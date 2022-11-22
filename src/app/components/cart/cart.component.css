@@ -1,0 +1,28 @@
+.thumbnail{
+  border-radius: 50% 50%;
+}
+
+.cart--empty-message{
+  text-align: center;
+  font-size: 1.5em;
+  color: #999;
+}
+
+.cart--empty-message a {
+  display: inline-block;
+  width: 343px;
+  max-width: 90%;
+  border: 1px #fcaf17 solid;
+  line-height: 46px;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 9px;
+  font-size: 18px;
+  font-family: svn-gilroy bold;
+}
+
+a.buy-now{
+  border-color: #7a7a9d;
+  background: #fff;
+  color: #7a7a9d;
+}

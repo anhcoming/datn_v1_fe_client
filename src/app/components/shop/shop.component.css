@@ -1,0 +1,179 @@
+a {
+  color: black;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav.justify-content-center {
+  float: right;
+}
+
+.ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-left {
+  width: 69%;
+  background-color: rgb(255, 255, 255);
+  float: left;
+
+
+}
+
+.header-right {
+  width: 31%;
+  float: left;
+}
+
+.header-bottom {
+  width: 100%;
+  float: left;
+  margin-top: 5px;
+  background-color: black;
+  color: white;
+
+}
+
+.header {
+  width: 100%;
+  height: auto;
+  float: left;
+  margin-top: 5px;
+
+}
+
+.header-2 {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+}
+
+.mat-icon {
+  color: rgb(36, 36, 36);
+
+}
+
+.mat-icon-button {
+  margin-right: 10px;
+}
+
+.nav-link {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+
+#priceButton {
+  background-color: #ffffff;
+  border: #e8e8e8 solid 1px;
+  border-radius: 7px;
+  height: 60px;
+  width: 100px;
+  position: relative;
+  top: -5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#priceButton:hover {
+  border: black 2px solid;
+}
+
+.card {
+  float: left;
+  margin: 10px;
+}
+
+#search-bar {
+  /* float: ri; */
+  width: 100%;
+  float: left;
+
+}
+
+#item-search {
+  margin: 10px;
+  width: 20%;
+  float: left;
+
+}
+
+.container {
+  margin: auto;
+  width: 100%;
+
+}
+
+.mat-form-field {
+  margin: 10px;
+}
+
+
+#titleProduct {
+  width: 20%;
+  margin-left: 108px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+/*  */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.content-body {
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.card {
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.pagination {
+  position: relative;
+  right: 35%;
+  left: 35%;
+  top: 40px;
+  font-size: 14px;
+  width: 50%;
+  height: auto;
+}
+
+
+.shopee-search-empty-result-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 6.25rem 0 7.5rem;
+}
+
+.shopee-search-empty-result-section__icon {
+  width: 8.375rem;
+}
+
+.shopee-search-empty-result-section__title {
+  margin: 0.9375rem 0 0.625rem;
+  color: rgba(0,0,0,.87);
+  font-size: 1.125rem;
+}
+
+/*  */

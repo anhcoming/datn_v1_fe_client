@@ -1,0 +1,193 @@
+<h1 class="title-head" style="margin: 20px; color: #fcaf17">
+  Địa chỉ của bạn
+  <button
+    data-bs-toggle="modal" data-bs-target="#exampleModal"
+    class="btn-edit-addr btn btn-primarys btn-more"
+    type="button"
+    style="margin: -14px"
+  >
+    + Thêm địa chỉ mới
+  </button>
+</h1>
+<hr />
+<div class="total_address">
+  <div
+    class="customer_address"
+    id="view_address_22016891"
+    *ngFor="let a of address"
+  >
+    <div class="address_info">
+      <div class="address-group">
+        <div class="address form-signup">
+          <p>
+            <strong>Họ tên: </strong>{{ a?.nameOfRecipient }}
+            <span class="address-default" *ngIf="a.isDefault">
+              <i class="far fa-check-circle"></i>Địa chỉ mặc định
+            </span>
+          </p>
+          <p><strong>Địa chỉ:</strong>{{ a?.combination }}</p>
+          <p><strong>Số điện thoại:</strong>{{ a?.phoneNumber }}</p>
+        </div>
+      </div>
+      <div class="btn-address" id="tool_address_22016891">
+        <button
+          data-bs-toggle="modal" data-bs-target="#exampleModal"
+          class="btn-edit-addr btn btn-primarys btn-edit"
+          aria-controls="edit_address_22016891"
+          type="button"
+          data-form="edit_address_22016891"
+          (click)="editAddress(a)"
+        >
+          SỬA</button
+        ><br />
+        <button
+          *ngIf="!a.isDefault"
+          class="btn btn-dark-address btn-edit-addr btn-delete"
+          type="button"
+          (click)="deleteAddress(a.id!)"
+        >
+          Xóa</button
+        ><br />
+        <button
+          *ngIf="!a.isDefault"
+          type="button"
+          class="btn btn-light btn--s btn--inline ArNOrH"
+          style="padding: 8px 15px"
+          (click)="setDefaultAddress(a.id!)"
+        >
+          Thiết lập mặc định
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  aria-hidden="true"
+  #exampleModal
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:25px;">Thêm địa chỉ mới</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+      </div>
+      <div class="modal-body">
+          <form class="row g-3" [formGroup]="addressForm" >
+              <div class="col-md-6">
+                  <label for="inputName" class="form-label">Họ tên</label>
+                  <input type="text" class="form-control" id="inputName" formControlName="nameOfRecipient">
+                  <div *ngIf="f['nameOfRecipient'].touched && f['nameOfRecipient'].invalid">
+                    <div *ngIf="f['nameOfRecipient'].errors && f['nameOfRecipient'].errors['required']">
+                      <p class="field__message">Vui lòng nhập họ tên</p>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6">
+                  <label for="inputClass" class="form-label">Số điện thoại</label>
+                  <input type="text" class="form-control" id="inputClass" formControlName="phoneNumber">
+                  <div *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid">
+                    <div *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['required']">
+                      <p class="field__message">Vui lòng nhập SĐT</p>
+                    </div>
+                    <div *ngIf="f['phoneNumber'].errors && f['phoneNumber'].errors['pattern']">
+                      <p class="field__message">Nhập sai định dạng SĐT</p>
+                    </div>
+                  </div>
+                </div>
+              <div class="col-md-12 address">
+                <label for="inputEmail4" class="form-label">Địa chỉ</label>
+                <input type="text" class="form-control" formControlName="exact">
+                <div *ngIf="f['exact'].touched && f['exact'].invalid">
+                  <div *ngIf="f['exact'].errors && f['exact'].errors['required']">
+                    <p class="field__message">Vui lòng nhập địa chỉ</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 address">
+                <label for="province" class="form-label">Tỉnh thành</label>
+                <select
+                  class="form-control"
+                  formControlName="provinceId"
+                  (change)="onChangeProvince($event)"
+                >
+                  <option value hidden>---</option>
+                  <option *ngFor="let province of provinces" [value]="province.ProvinceID">
+                    {{province.ProvinceName}}
+                  </option>
+                </select>
+
+                <div *ngIf="f['provinceId'].touched && f['provinceId'].invalid">
+                  <div *ngIf="f['provinceId'].errors && f['provinceId'].errors['required']">
+                    <p class="field__message">Vui lòng chọn tỉnh thành</p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <label for="district" class="form-label">Quận huyện</label>
+                <select
+                  class="form-control"
+                  formControlName="districtId"
+                  (change)="onChangeDistrict($event)"
+                  [attr.disabled]="!addressForm.value.provinceId ? '' : null"
+                >
+                  <option value>---</option>
+                  <option *ngFor="let d of districts" [value]="d.DistrictID">
+                    {{d.DistrictName}}
+                  </option>
+                </select>
+
+                <div *ngIf="f['districtId'].touched && f['districtId'].invalid">
+                  <div *ngIf="f['districtId'].errors && f['districtId'].errors['required']">
+                    <p class="field__message">Vui lòng chọn quận huyện</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label for="ward" class="form-label">Xã phường</label>
+                <select
+                  class="form-control"
+                  formControlName="wardCode"
+                  (change)="onChangeWard($event)"
+                  [attr.disabled]="!addressForm.value.districtId ? '' : null"
+
+                >
+                  <option value>---</option>
+                  <option *ngFor="let w of wards" [value]="w.WardCode">
+                    {{w.WardName}}
+                  </option>
+                </select>
+
+                <div *ngIf="f['wardCode'].touched && f['wardCode'].invalid">
+                  <div *ngIf="f['wardCode'].errors && f['wardCode'].errors['required']">
+                    <p class="field__message">Vui lòng chọn xã phường</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <div class="checkbox col-6">
+                <label class="c-input c-checkbox" style="padding-left: 26px;">
+                  <input type="checkbox" value="true" style="margin-left:11px;">
+                  <span class="c-indicator">Đặt là địa chỉ mặc định?</span>
+                </label>
+              </div> -->
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-right:20px;" (click)="resetForm()">Hủy</button>
+                <button type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="saveOrUpdateAddress()">Lưu</button>
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>

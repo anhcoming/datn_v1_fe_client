@@ -1,0 +1,51 @@
+<div class="main-info-deposit">
+  <div *ngIf="!isError">
+    <img class="deposit-image" src="../../../assets/img/check.png" />
+    <div style="text-align: center; font-size: 15px; margin-top: 15px">
+      GIAO DỊCH THÀNH CÔNG
+    </div>
+    <div style="text-align: center; font-size: 20px; margin-top: 50px">
+      THÔNG TIN THANH TOÁN
+    </div>
+    <div class="main-info">
+      <div class="label-info">
+        Mã giao dịch: {{ paymentInfo?.transactionNo }}
+      </div>
+      <hr />
+      <div className="label-info">
+        Mã hóa đơn: {{ paymentInfo?.invoiceNumber }}
+      </div>
+      <hr />
+      <div class="label-info">Ngân hàng : {{ paymentInfo?.bankCode }}</div>
+      <hr />
+      <div class="label-info">Số tiền: {{ paymentInfo?.amount | vnd}}</div>
+      <hr />
+      <div class="label-info">Nội dung: {{ paymentInfo?.orderId }}</div>
+      <hr />
+      <div class="label-info">Ngày tạo: {{ paymentInfo?.createDate}}</div>
+      <hr />
+
+      <div class="col-md-12 text-center">
+        <button type="button" class="btn btn-primary" routerLink="/home">
+          Quay Lại Trang Chủ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isError">
+    <img
+      class="deposit-image"
+      src="../../../assets/img/fail.jpg"
+      alt="success"
+    />
+    <div style="text-align: center; font-size: 25; margin-top: 50">
+      GIAO DỊCH KHÔNG THÀNH CÔNG
+    </div>
+    <div class="main-info">
+      <button type="button" style="margin-left: 25; margin-top: 50" routerLink="/home">
+        Quay Lại Trang Chủ
+      </button>
+    </div>
+  </div>
+</div>

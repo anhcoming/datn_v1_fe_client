@@ -1,0 +1,24 @@
+
+
+
+<!-- <app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer> -->
+
+
+  <div *ngIf="!check">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+  <app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+</div>
+
+<div *ngIf="check">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-fall" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+<router-outlet></router-outlet>
+</div>
+

@@ -1,0 +1,843 @@
+<div class="content">
+  <form data-tg-refresh="checkout" id="checkoutForm" [formGroup]="checkoutForm" (ngSubmit)="checkout()" >
+    <input type="hidden" name="_method" value="patch" />
+    <div class="wrap">
+      <main class="main">
+        <header class="main__header">
+          <div class="logo logo--center">
+            <a>
+              <img
+                class="logo__image logo__image--medium"
+                alt="SPORT SHOP"
+                src="assets/img/logo/logo.png"
+              />
+            </a>
+          </div>
+        </header>
+        <div class="main__content">
+          <article class="animate-floating-labels row">
+            <div class="col col--two">
+              <section class="section">
+                <div class="section__header">
+                  <div class="layout-flex">
+                    <h2
+                      class="section__title layout-flex__item layout-flex__item--stretch"
+                    >
+                      <i
+                        class="fa fa-id-card-o fa-lg section__title--icon hide-on-desktop"
+                      ></i>
+                      Thông tin mua hàng
+                    </h2>
+                  </div>
+                </div>
+                <div class="section__content">
+                  <div class="fieldset">
+
+                    <div class="field field--show-floating-label">
+                      <div
+                        class="field__input-wrapper field__input-wrapper--select2"
+                      >
+                        <label for="shippingProvince" class="field__label"
+                          >Sổ địa chỉ</label
+                        >
+
+                        <select
+                          name="saddress"
+                          id="saddress"
+                          type="text"
+                          class="field__input field__input--select "
+                          tabindex="-1"
+                          aria-hidden="true"
+                          (change)="onChangeAddress($event)"
+                          formControlName="addressId"
+                        >
+                          <option value="" hidden>Chọn địa chỉ ...</option>
+                          <option *ngFor="let a of address" [value]="a.id">
+                            {{a?.nameOfRecipient}}, {{a?.phoneNumber}}, {{a?.combination}}
+                          </option>
+
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="field__input-wrapper">
+                        <label for="billingName" class="field__label">Họ và tên</label>
+                        <input
+                          name="billingName"
+                          id="billingName"
+                          type="text"
+                          class="field__input"
+                          formControlName="name"
+                          placeholder="Họ và tên"
+                          [attr.disabled]="true"
+                        />
+                      </div>
+                      <div *ngIf="f['name'].touched && f['name'].invalid">
+                        <div *ngIf="f['name'].errors && f['name'].errors['required']">
+                          <p class="field__message">Vui lòng nhập họ tên</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="field__input-wrapper">
+                        <label for="billingPhone" class="field__label">
+                          Số điện thoại
+                        </label>
+                        <input
+                          name="billingPhone"
+                          id="billingPhone"
+                          type="tel"
+                          class="field__input"
+                          formControlName="phone"
+                          value=""
+                          placeholder="Số điện thoại"
+                          [attr.disabled]="true"
+                        />
+                      </div>
+                      <div *ngIf="f['phone'].touched && f['phone'].invalid">
+                        <div *ngIf="f['phone'].errors && f['phone'].errors['required']">
+                          <p class="field__message">Vui lòng nhập số điện thoại</p>
+                        </div>
+                        <div *ngIf="f['phone'].errors && f['phone'].errors['pattern']">
+                          <p class="field__message">Nhập sai định dạng SĐT</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <div class="field__input-wrapper">
+                        <label for="billingAddress" class="field__label">
+                          Địa chỉ
+                        </label>
+                        <input
+                          name="billingAddress"
+                          id="billingAddress"
+                          type="text"
+                          class="field__input"
+                          formControlName="address"
+                          placeholder="Địa chỉ"
+                          [attr.disabled]="true"
+                        />
+                      </div>
+                      <div *ngIf="f['address'].touched && f['address'].invalid">
+                        <div *ngIf="f['address'].errors && f['address'].errors['required']">
+                          <p class="field__message">Vui lòng nhập địa chỉ</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field field--show-floating-label">
+                      <div
+                        class="field__input-wrapper field__input-wrapper--select2"
+                      >
+                        <label for="shippingProvince" class="field__label"
+                          >Tỉnh thành</label
+                        >
+                        <select
+                          name="shippingProvince"
+                          id="shippingProvince"
+                          size="1"
+                          formControlName="province"
+                          type="text"
+                          class="field__input field__input--select field__input--select-address"
+                          tabindex="-1"
+                          aria-hidden="true"
+                          (change)="onChangeProvince($event)"
+                          [attr.disabled]="true"
+
+                        >
+                          <option value hidden>---</option>
+                          <option *ngFor="let province of provinces" [value]="province.ProvinceID">
+                            {{province.ProvinceName}}
+                          </option>
+
+                        </select>
+                      </div>
+                      <div *ngIf="f['province'].touched && f['province'].invalid">
+                        <div *ngIf="f['province'].errors && f['province'].errors['required']">
+                          <p class="field__message">Bạn chưa chọn tỉnh thành</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field field--show-floating-label">
+                      <div
+                        class="field__input-wrapper field__input-wrapper--select2"
+                      >
+                        <label for="shippingDistrict" class="field__label">
+                          Quận huyện
+                        </label>
+                        <!-- [attr.disabled]="!checkoutForm.value.province ? '' : null" -->
+                        <select
+                          name="shippingDistrict"
+                          id="shippingDistrict"
+                          size="1"
+                          type="text"
+                          class="field__input field__input--select field__input--select-address"
+                          tabindex="-1"
+                          aria-hidden="true"
+                          formControlName="district"
+                          (change)="onChangeDistrict($event)"
+                          [attr.disabled]="true"
+                        >
+                          <option value>---</option>
+                          <option *ngFor="let d of districts" [value]="d.DistrictID">
+                            {{d.DistrictName}}
+                          </option>
+                        </select>
+                      </div>
+                      <div *ngIf="f['district'].touched && f['district'].invalid">
+                        <div *ngIf="f['district'].errors && f['district'].errors['required']">
+                          <p class="field__message">Bạn chưa chọn quận huyện</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="field field--show-floating-label">
+                      <div
+                        class="field__input-wrapper field__input-wrapper--select2"
+                      >
+                        <label for="shippingWard" class="field__label">
+                          Phường xã
+                        </label>
+                        <!--  [attr.disabled]="!checkoutForm.value.district ? '' : null" -->
+                        <select
+                          name="shippingWard"
+                          id="shippingWard"
+                          size="1"
+                          type="text"
+                          class="field__input field__input--select field__input--select-address"
+                          tabindex="-1"
+                          aria-hidden="true"
+                          formControlName="ward"
+                          (change)="onChangeWard($event)"
+
+                          [attr.disabled]="true"
+                        >
+                        <option value>---</option>
+                        <option *ngFor="let w of wards" [value]="w.WardCode">
+                          {{w.WardName}}
+                        </option>
+                      </select>
+
+                      </div>
+
+                      <div *ngIf="f['ward'].touched && f['ward'].invalid">
+                        <div *ngIf="f['ward'].errors && f['ward'].errors['required']">
+                          <p class="field__message">Bạn chưa chọn phường xã</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+              <div class="fieldset">
+                <h3 class="visually-hidden">Ghi chú</h3>
+                <div class="field">
+                  <div class="field__input-wrapper">
+                    <label for="note" class="field__label">
+                      Ghi chú (tùy chọn)
+                    </label>
+                    <textarea
+                      name="note"
+                      id="note"
+                      type="text"
+                      formControlName="note"
+                      class="field__input"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col--two col--two2">
+              <section class="section">
+                <div class="section__header">
+                  <div class="layout-flex">
+                    <h2
+                      class="section__title layout-flex__item layout-flex__item--stretch"
+                    >
+                      <i
+                        class="fa fa-truck fa-lg section__title--icon hide-on-desktop"
+                      ></i>
+                      Vận chuyển
+                    </h2>
+                  </div>
+                </div>
+              </section>
+
+
+              <div class="field field--show-floating-label">
+                <div
+                  class="field__input-wrapper field__input-wrapper--select2"
+                  style="margin-top: -14px;"
+                >
+                  <label for="shippingWard" class="field__label">
+                    Loại hình vận chuyển
+                  </label>
+                  <select
+                    name="shippingWard"
+                    id="shippingWard"
+                    size="1"
+                    type="text"
+                    class="field__input field__input--select"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    formControlName="shippingMethod"
+                    (change)="serviceChange($event)"
+                  >
+                  <option value hidden>---</option>
+                  <option *ngFor="let s of services" [value]="s.service_id">
+                    <!-- {{s.short_name}} -->
+                    {{db}}
+                  </option>
+                </select>
+                </div>
+
+                <div *ngIf="f['shippingMethod'].touched && f['shippingMethod'].invalid">
+                  <div *ngIf="f['shippingMethod'].errors && f['shippingMethod'].errors['required']">
+                    <p class="field__message">Vui lòng chọn phương thước vận chuyển</p>
+                  </div>
+                </div>
+              </div>
+
+              <section class="section">
+                <div class="section__header">
+                  <div class="layout-flex">
+                    <h2
+                      class="section__title layout-flex__item layout-flex__item--stretch"
+                    >
+                      <i
+                        class="fa fa-credit-card fa-lg section__title--icon hide-on-desktop"
+                      ></i>
+                     ĐẶT HÀNG
+                    </h2>
+                  </div>
+                </div>
+                <div class="section__content">
+
+                  <div *ngIf="f['paymentMethod'].touched && f['paymentMethod'].invalid">
+                    <div *ngIf="f['paymentMethod'].errors && f['paymentMethod'].errors['paymentMethod']">
+                      <div class="alert alert--danger">
+                        Bạn cần chọn phương thức thanh toán
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="content-box">
+
+                    <div class="content-box__row">
+                      <div class="radio-wrapper">
+                        <div class="radio__input">
+                          <input
+                            name="paymentMethod"
+                            id="paymentMethod-482900"
+                            type="radio"
+                            class="input-radio"
+                            formControlName="paymentMethod"
+                            value="COD"
+                          />
+                        </div>
+                        <label for="paymentMethod-482900" class="radio__label">
+                          <span class="radio__label__primary"
+                            >Thanh toán khi giao hàng (COD)</span
+                          >
+                          <span class="radio__label__accessory">
+                            <span class="radio__label__icon">
+                              <img class="ic" src="https://aristino.com/COntent/pc/images/icon/cod.png" alt="Thanh toán COD">
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+
+                      <div [ngClass]="checkoutForm.value.paymentMethod == 'COD' ? 'content-box__row__desc': 'content-box__row__desc hide'">
+                        <p>
+                          Khách hàng được kiểm tra hàng trước khi thanh toán
+                          tiền cho bưu tá.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="content-box__row">
+                      <div class="radio-wrapper">
+                        <div class="radio__input">
+                          <input
+                            name="paymentMethod"
+                            id="paymentMethod-482899"
+                            type="radio"
+                            class="input-radio"
+                            formControlName="paymentMethod"
+                            value="ATM"
+                          />
+                        </div>
+                        <label for="paymentMethod-482899" class="radio__label">
+                          <span class="radio__label__primary"
+                            >Chuyển khoản qua ngân hàng</span
+                          >
+                          <span class="radio__label__accessory">
+                            <span class="radio__label__icon">
+
+                              <img class="ic" src="https://aristino.com/COntent/pc/images/icon/ttnh.png" alt="Thanh toán chuyển khoản">
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+
+                      <div [ngClass]="checkoutForm.value.paymentMethod == 'ATM' ? 'content-box__row': 'content-box__row hide'">
+                        <p>Ngân hàng: Sacombank</p>
+                        <p>Tên tài khoản: Nguyễn Văn Mạnh</p>
+                        <p>Số tài khoản: 144405456757</p>
+                        <p>Chi nhánh: Hà Nội</p>
+                      </div>
+                    </div>
+
+                    <div class="content-box__row">
+                      <div class="radio-wrapper">
+                        <div class="radio__input">
+                          <input
+                            name="paymentMethod"
+                            id="paymentMethod-4828999"
+                            type="radio"
+                            class="input-radio"
+                            formControlName="paymentMethod"
+                            value="VNPAY"
+                          />
+                        </div>
+                        <label for="paymentMethod-4828999" class="radio__label">
+                          <span class="radio__label__primary"
+                            >Thanh toán qua VNPAY</span
+                          >
+                          <span class="radio__label__accessory">
+                            <span class="radio__label__icon">
+                              <img class="ic" src="https://aristino.com/COntent/pc/images/icon/vnpay.png" alt="Thanh toán qua VN PAY">
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+
+                      <!-- <div [ngClass]="checkoutForm.value.paymentMethod == 'VNPAY' ? 'list_bank list_bank-13419 content-box__row': 'list_bank list_bank-13419content-box__row hide'" class="list_bank list_bank-13419" style="display: block;">
+
+                          <input type="hidden" id="BankCode" name="BankCode" value="NCB">
+
+                          <ul class="list-vnpay">
+                              <li>
+                                  <label for="VIETCOMBANK" class="">
+                                      <input type="button" value="VIETCOMBANK" id="VIETCOMBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vietcombank_logo.png" width="200" height="40" alt="VIETCOMBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIETINBANK" class="">
+                                      <input type="button" value="VIETINBANK" id="VIETINBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vietinbank_logo.png" width="200" height="40" alt="VIETINBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="BIDV" class="">
+                                      <input type="button" value="BIDV" id="BIDV" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/bidv_logo.png" width="200" height="40" alt="BIDV">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="AGRIBANK">
+                                      <input type="button" value="AGRIBANK" id="AGRIBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/agribank_logo.png" width="200" height="40" alt="AGRIBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SACOMBANK" class="">
+                                      <input type="button" value="SACOMBANK" id="SACOMBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/sacombank_logo.png" width="200" height="40" alt="SACOMBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="TECHCOMBANK" class="">
+                                      <input type="button" value="TECHCOMBANK" id="TECHCOMBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/techcombank_logo.png" width="200" height="40" alt="TECHCOMBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="ACB">
+                                      <input type="button" value="ACB" id="ACB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/acb_logo2.png" width="200" height="40" alt="ACB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VPBANK">
+                                      <input type="button" value="VPBANK" id="VPBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vpbank_logo.png" width="200" height="40" alt="VPBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="DONGABANK">
+                                      <input type="button" value="DONGABANK" id="DONGABANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/dongabank_logo.png" width="200" height="40" alt="DONGABANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="EXIMBANK">
+                                      <input type="button" value="EXIMBANK" id="EXIMBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/eximbank_logo.png" width="200" height="40" alt="EXIMBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="TPBANK">
+                                      <input type="button" value="TPBANK" id="TPBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/tpbank_logo.png" width="200" height="40" alt="TPBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="NCB" class="active">
+                                      <input type="button" value="NCB" id="NCB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/ncb_logo.png" width="200" height="40" alt="NCB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="OJB">
+                                      <input type="button" value="OJB" id="OJB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/oceanbank_logo.png" width="200" height="40" alt="OJB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="MSBANK">
+                                      <input type="button" value="MSBANK" id="MSBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/msbank_logo.png" width="200" height="40" alt="MSBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="HDBANK">
+                                      <input type="button" value="HDBANK" id="HDBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/hdbank_logo.png" width="200" height="40" alt="HDBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="NAMABANK">
+                                      <input type="button" value="NAMABANK" id="NAMABANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/namabank_logo.png" width="200" height="40" alt="NAMABANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="OCB">
+                                      <input type="button" value="OCB" id="OCB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/ocb_logo.png" width="200" height="40" alt="OCB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SCB">
+                                      <input type="button" value="SCB" id="SCB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/scb_logo.png" width="200" height="40" alt="SCB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="IVB">
+                                      <input type="button" value="IVB" id="IVB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/ivb_logo.png" width="200" height="40" alt="IVB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="ABBANK">
+                                      <input type="button" value="ABBANK" id="ABBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/abb_logo.png" width="200" height="40" alt="ABBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="MBBANK">
+                                      <input type="button" value="MBBANK" id="MBBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/mbbank_logo.png" width="200" height="40" alt="MBBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SHB">
+                                      <input type="button" value="SHB" id="SHB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/shb_logo.png" width="200" height="40" alt="SHB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIB">
+                                      <input type="button" value="VIB" id="VIB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vib_logo.png" width="200" height="40" alt="VIB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIETABANK">
+                                      <input type="button" value="VIETABANK" id="VIETABANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vietabank_logo.png" width="200" height="40" alt="VIETABANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="BACABANK">
+                                      <input type="button" value="BACABANK" id="BACABANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/bacabank_logo.png" width="200" height="40" alt="BACABANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIETBANK">
+                                      <input type="button" value="VIETBANK" id="VIETBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vietbank_logo.png" width="200" height="40" alt="VIETBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIETCAPITALBANK">
+                                      <input type="button" value="VIETCAPITALBANK" id="VIETCAPITALBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vccb_logo.png" width="200" height="40" alt="VIETCAPITALBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SEABANK">
+                                      <input type="button" value="SEABANK" id="SEABANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/seabank_logo.png" width="200" height="40" alt="SEABANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="WOORIBANK">
+                                      <input type="button" value="WOORIBANK" id="WOORIBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/wooribank_logo.png" width="200" height="40" alt="WOORIBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="PVCOMBANK">
+                                      <input type="button" value="PVCOMBANK" id="PVCOMBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/pvcombank_logo.png" width="200" height="40" alt="PVCOMBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SAIGONBANK">
+                                      <input type="button" value="SAIGONBANK" id="SAIGONBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/saigonbank_logo.png" width="200" height="40" alt="SAIGONBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="LIENVIETBANK">
+                                      <input type="button" value="LIENVIETBANK" id="LIENVIETBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/lienvietbank_logo.png" width="200" height="40" alt="LIENVIETBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="KIENLONGBANK">
+                                      <input type="button" value="KIENLONGBANK" id="KIENLONGBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/kienlongbank_logo.png" width="200" height="40" alt="KIENLONGBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="BAOVIETBANK">
+                                      <input type="button" value="BAOVIETBANK" id="BAOVIETBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/baovietbank_logo.png" width="200" height="40" alt="BAOVIETBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VIDBANK">
+                                      <input type="button" value="VIDBANK" id="VIDBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vidbank_logo.png" width="200" height="40" alt="VIDBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="PGBANK">
+                                      <input type="button" value="PGBANK" id="PGBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/pgbank_logo.png" width="200" height="40" alt="PGBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="VRB">
+                                      <input type="button" value="VRB" id="VRB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/vrb_logo.png" width="200" height="40" alt="VRB">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="GPBANK">
+                                      <input type="button" value="GPBANK" id="GPBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/gpbank_logo.png" width="200" height="40" alt="GPBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="SHINHANBANK">
+                                      <input type="button" value="SHINHANBANK" id="SHINHANBANK" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/shinhanbank_logo.png" width="200" height="40" alt="SHINHANBANK">
+                                  </label>
+                              </li>
+                              <li>
+                                  <label for="UOB">
+                                      <input type="button" value="UOB" id="UOB" name="paymethod"><img src="https://pay.vnpay.vn/images/bank/uob_logo.png" width="200" height="40" alt="UOB">
+                                  </label>
+                              </li>
+                          </ul>
+
+                      </div> -->
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+            </div>
+          </article>
+          <div
+            class="field__input-btn-wrapper field__input-btn-wrapper--vertical hide-on-desktop"
+          >
+            <button type="submit" class="btn btn-checkout spinner">
+              <span class="spinner-label">ĐẶT HÀNG</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
+                <use href="#spinner"></use>
+              </svg>
+            </button>
+
+            <a routerLink="/cart" class="previous-link">
+              <i class="previous-link__arrow">❮</i>
+              <span class="previous-link__content">Quay về giỏ hàng</span>
+            </a>
+          </div>
+
+          <div id="common-alert" data-tg-refresh="refreshError">
+            <div class="alert alert--danger hide-on-desktop hide">
+              Có lỗi xảy ra khi xử lý. Vui lòng thử lại
+            </div>
+          </div>
+        </div>
+      </main>
+      <aside class="sidebar">
+        <div class="sidebar__header">
+          <h2 class="sidebar__title">Đơn hàng {{totalItems}} sản phẩm</h2>
+        </div>
+        <div class="sidebar__content">
+          <div
+            id="order-summary"
+            class="order-summary order-summary--is-collapsed"
+          >
+            <div class="order-summary__sections">
+              <div
+                class="order-summary__section order-summary__section--product-list order-summary__section--is-scrollable order-summary--collapse-element"
+              >
+                <table class="product-table">
+                  <caption class="visually-hidden">
+                    Chi tiết đơn hàng
+                  </caption>
+                  <thead class="product-table__header">
+                    <tr>
+                      <th>
+                        <span class="visually-hidden">Ảnh sản phẩm</span>
+                      </th>
+                      <th>
+                        <span class="visually-hidden">Mô tả</span>
+                      </th>
+                      <th>
+                        <span class="visually-hidden">Sổ lượng</span>
+                      </th>
+                      <th>
+                        <span class="visually-hidden">Đơn giá</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let c of cart;let i = index">
+                    <tr class="product" >
+                      <td class="product__image">
+                        <div class="product-thumbnail">
+                          <div
+                            class="product-thumbnail__wrapper"
+                            data-tg-static=""
+                          >
+                            <img
+                              [src]="c.image"
+                              alt=""
+                              class="product-thumbnail__image"
+                            />
+                          </div>
+                          <span class="product-thumbnail__quantity">{{c?.quantity}}</span>
+                        </div>
+                      </td>
+                      <th class="product__description">
+                        <span class="product__description__name">{{c?.productName}}</span>
+
+                        <span class="product__description__property">{{c.colorName}} / {{c.sizeName}}</span>
+                      </th>
+                      <td class="product__price">{{c?.subtotal | vnd}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="order-summary__section order-summary__section--discount-code"
+                              data-tg-refresh="refreshDiscount" id="discountCode">
+                              <h3 class="visually-hidden">Mã khuyến mại</h3>
+                              <div class="edit_checkout animate-floating-labels">
+                                  <div class="fieldset">
+                                      <div class="field">
+                                          <div class="field__input-btn-wrapper">
+                                              <div class="field__input-wrapper">
+                                                  <label for="reductionCode" class="field__label">
+                                                    Nhập mã giảm giá
+                                                  </label>
+                                                  <input name="reductionCode" id="reductionCode" formControlName="discountCode" type="text"
+                                                      class="field__input" autocomplete="off">
+                                              </div>
+                                              <button class="field__input-btn btn spinner"
+                                                  (click)="verifyDiscount()"
+                                                  type="button">
+                                                  <span class="spinner-label">Áp dụng</span>
+                                                  <svg xmlns="http://www.w3.org/2000/svg" class="spinner-loader">
+                                                      <use href="#spinner"></use>
+                                                  </svg>
+                                              </button>
+                                          </div>
+
+                                          <!-- check error message != '' then display errorMessage -->
+                                          <p class="field__message field__message--error field__message--error-always-show" *ngIf="errorMessage != ''">
+                                              <!-- Có lỗi xảy ra khi áp dụng khuyến mãi. Vui lòng thử lại -->
+                                              {{errorMessage}}
+                                          </p>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+              <div
+                class="order-summary__section order-summary__section--total-lines order-summary--collapse-element"
+                data-tg-refresh="refreshOrderTotalPrice"
+                id="orderSummary"
+              >
+                <table class="total-line-table">
+                  <caption class="visually-hidden">
+                    Tổng giá trị
+                  </caption>
+                  <thead>
+                    <tr>
+                      <td><span class="visually-hidden">Mô tả</span></td>
+                      <td><span class="visually-hidden">Giá tiền</span></td>
+                    </tr>
+                  </thead>
+                  <tbody class="total-line-table__tbody">
+                    <tr class="total-line total-line--subtotal">
+                      <th class="total-line__name">Tạm tính</th>
+                      <td class="total-line__price">{{totalPrice | vnd}}</td>
+                    </tr>
+
+                    <tr class="total-line total-line--shipping-fee">
+                      <th class="total-line__name">
+                        Phí vận chuyển
+                      </th>
+                      <td class="total-line__price">{{shipping?.totalShip | vnd}}</td>
+                    </tr>
+
+                    <!-- if totalDiscount > 0 display total discount -->
+                    <tr class="total-line total-line--shipping-fee" *ngIf="totalDiscount > 0">
+                      <th class="total-line__name">
+                        Giảm giá
+                      </th>
+                      <td class="total-line__price">{{totalDiscount | vnd}}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot class="total-line-table__footer">
+                    <tr class="total-line payment-due">
+                      <th class="total-line__name">
+                        <span class="payment-due__label-total">
+                          Tổng cộng
+                        </span>
+                      </th>
+                      <td class="total-line__price">
+                        <span class="payment-due__price">{{total | vnd}}</span>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <div
+                class="order-summary__nav field__input-btn-wrapper hide-on-mobile layout-flex--row-reverse"
+              >
+                <button type="submit" class="btn btn-checkout spinner" [disabled]="checkoutForm.invalid">
+                  <span class="spinner-label"></span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="spinner-loader"
+                  >
+                    <use href="#spinner"></use>
+                  </svg>
+                  MUA NGAY
+                </button>
+
+                <a href="/cart" class="previous-link">
+                  <i class="previous-link__arrow">❮</i>
+                  <span class="previous-link__content">Quay về giỏ hàng</span>
+                </a>
+              </div>
+
+              <div id="common-alert-sidebar" data-tg-refresh="refreshError">
+                <div class="alert alert--danger hide-on-mobile hide">
+                  Có lỗi xảy ra khi xử lý. Vui lòng thử lại
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </form>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <symbol id="spinner">
+      <svg viewBox="0 0 30 30">
+              <circle stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="85%"
+                  cx="50%" cy="50%" r="40%">
+                  <animateTransform attributeName="transform" type="rotate" from="0 15 15" to="360 15 15" dur="0.7s"
+                      repeatCount="indefinite"></animateTransform>
+              </circle>
+          </svg>
+    </symbol>
+  </svg>
+</div>

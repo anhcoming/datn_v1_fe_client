@@ -1,0 +1,37 @@
+<section class="signup page_customer_account">
+  <div class="container">
+    <div class="row">
+      <div class="col-left-ac">
+        <div class="block-account">
+          <div class="info info-1">
+            <img alt="Nguyen Anh Tuan"
+              src="//bizweb.sapocdn.net/100/438/408/themes/863105/assets/account_ava.jpg?1658397108510" />
+            <p>{{customer?.fullName}}</p>
+            <button (click)="logout()" class="logOut" style="width:100%;">Đăng xuất</button>
+
+          </div>
+          <ul>
+            <li>
+              <a class="title-info" routerLink="profile">Tài khoản của tôi</a>
+            </li>
+            <li>
+              <a class="title-info" routerLink="my-order">Đơn hàng của tôi</a>
+            </li>
+            <li>
+              <a class="title-info" routerLink="change-password">Đổi mật khẩu</a>
+            </li>
+            <li>
+              <a class="title-info" routerLink="address">Sổ địa chỉ</a>
+            </li>
+            <li>
+              <a class="title-info" routerLink="discount">Mã khuyến mãi</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-right-ac">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

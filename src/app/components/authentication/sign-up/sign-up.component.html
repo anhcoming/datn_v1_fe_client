@@ -1,0 +1,113 @@
+<form [formGroup]="userForm" class="mt-5 container" style="width:30%">
+  <h2 class="pt-3" style="font-family: 'Segoe UI';"><b>Flone.</b></h2>
+  <p>Đăng ký để sử dụng dịch vụ...</p>
+  <div class="row">
+    <div class="mb-2 form-group" style="width:50%;float:left;padding-right:20px ;">
+      <input type="text" class="form-control" formControlName="firstName" placeholder="Họ">
+      <div *ngIf="f.firstName.invalid&&(f.firstName.dirty||f.firstName.touched) ">
+        <div *ngIf="f.firstName.errors">
+          <div *ngIf="f.firstName.errors.required">
+            <small>Họ không được để trống</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="mb-2 form-group" style="width:50%;float:left ;">
+      <input type="text" class="form-control" formControlName="lastName" placeholder="Tên">
+      <div *ngIf="f.lastName.invalid&&(f.lastName.dirty||f.lastName.touched) ">
+        <div *ngIf="f.lastName.errors">
+          <div *ngIf="f.lastName.errors.required">
+            <small>Tên không được để trống</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="form-group">
+    <label for="gender">Gender:</label>
+    <div class="form-check">
+      <input class="form-check-input"formControlName="gender" checked value="true" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+      <label class="form-check-label" for="flexRadioDefault1">
+        Nam
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" formControlName="gender" value="false" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+      <label class="form-check-label" for="flexRadioDefault2">
+        Nữ
+      </label>
+    </div>
+
+   <div *ngIf="f.gender.invalid&&(f.gender.dirty||f.gender.touched) ">
+    <div *ngIf="f.gender.errors">
+      <div *ngIf="f.gender.errors.required">
+        <small>Giới tính không được để trống</small>
+      </div>
+    </div>
+  </div>
+</div> -->
+  <div class="mb-4 form-group mt-2">
+    <input type="text" class="form-control" formControlName="email" placeholder="Vui lòng nhập Email">
+    <div *ngIf="f.email.invalid&&(f.email.dirty||f.email.touched) ">
+      <div *ngIf="f.email.errors">
+        <div *ngIf="f.email.errors.required">
+          <small>Email không được để trống</small>
+        </div>
+        <div *ngIf="f.email.errors.email">
+          <small>Email không đúng định dạng</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4 form-group">
+    <input type="text" class="form-control" formControlName="phone" placeholder="Số điện thoại">
+    <div *ngIf="f.phone.invalid&&(f.phone.dirty||f.phone.touched) ">
+      <div *ngIf="f.phone.errors">
+        <div *ngIf="f.phone.errors.required">
+          <small>SĐT không được để trống</small>
+        </div>
+        <div *ngIf="f.phone.errors.pattern">
+          <small>SĐT không hợp lệ</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4 form-group">
+    <input type="date" class="form-control" formControlName="dob" placeholder="Vui lòng nhập ngày sinh">
+    <div *ngIf="f.dob.invalid&&(f.dob.dirty||f.dob.touched) ">
+      <div *ngIf="f.dob.errors">
+        <div *ngIf="f.dob.errors.required" style="1px solid red">
+          <small>Ngày sinh không được để trống</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-4 form-group">
+    <input #x type="password" class="form-control" formControlName="password" placeholder="Vui lòng nhập mật khẩu">
+    <div *ngIf="f.password.invalid&&(f.password.dirty||f.password.touched) ">
+      <div *ngIf="f.password.errors">
+        <div *ngIf="f.password.errors.required">
+          <small>Mật khẩu không được để trống</small>
+        </div>
+      </div>
+    </div>
+    <div>
+      <input class="hide" id="check" type="checkbox" (click)="x.type=x.type=='password'?'text':'password'"
+        style="width:15px;">
+      <label for="check" style="padding-top:11px;padding-left: 5px;position: absolute;">Hiện mật
+        khẩu</label></div>
+  </div>
+
+  <div style="margin-bottom: 20px;" *ngIf="userForm.valid">
+    <button type="submit" (click)="signUp()">Xác
+      nhận </button>
+  </div>
+  <div style="margin-bottom: 20px;" *ngIf="!userForm.valid">
+    <button type="submit" style="background-color: #c3a3f7;" disabled (click)="signUp()">Đăng ký </button>
+  </div>
+  <p class="mb-0 text-center mt-2 mb-4" style="padding-bottom:20px">
+    Bạn đã có tài khoản <a routerLink="/sign-in"><u>Đăng nhập</u></a>
+</p>
+</form>

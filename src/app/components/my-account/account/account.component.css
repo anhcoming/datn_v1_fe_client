@@ -1,0 +1,11 @@
+button{
+  height: 3rem;
+  background-color: black;
+  color: #f9f9f9;
+}
+button:hover{
+  height: 3rem;
+  background-color: rgb(215, 215, 215);
+  color: black;
+}
+

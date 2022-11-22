@@ -1,0 +1,24 @@
+.post:hover {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+}
+
+.post:hover img {
+  filter: brightness(70%);
+}
+
+.post:hover .h5{
+  color: #7729f5
+}
+
+.post:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+
+}
+
+.slick-next slick-arrow{
+  background-color:red
+}
+.hei :hover img{
+  filter: brightness(10%);
+}

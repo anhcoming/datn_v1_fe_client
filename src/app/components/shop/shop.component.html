@@ -1,0 +1,194 @@
+
+<div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
+  <div class="container">
+      <div class="breadcrumb-content text-center">
+          <ul>
+              <li>
+                  <a routerLink="/home">TRANG CHỦ</a>
+              </li>
+              <li class="active">SẢN PHẨM</li>
+          </ul>
+      </div>
+  </div>
+</div>
+<div class="shop-area pt-95 pb-100">
+  <div class="container">
+      <div class="row flex-row-reverse">
+          <div class="col-lg-9">
+              <div class="shop-top-bar">
+                  <div class="select-shoing-wrap">
+
+                      <div class="shop-select">
+                          <select (change)="sortSelect($event)">
+                              <option value="">Mặc định</option>
+                              <option value="createDate">Mới nhất</option>
+                              <option value="name,asc">Từ A - Z</option>
+                              <option value="name,desc">Từ Z đến A</option>
+                              <option value="price,desc">Giá giảm dần</option>
+                              <option value="price,asc">Giá tăng dần</option>
+                          </select>
+                      </div>
+
+                      <p style="margin-left: 560px;">Có {{totalElements}} sản phẩm</p>
+
+                  </div>
+
+                </div>
+              <div class="shop-bottom-area mt-35" *ngIf="listProduct.length > 0">
+                <div class="tab-content jump">
+                    <div id="shop-1" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-xl-4 col-md-6 col-lg-6 col-sm-6" *ngFor="let product of listProduct
+                              | paginate
+                              : {
+                                  itemsPerPage: pageSize,
+                                  currentPage: page+1,
+                                  totalItems: totalElements
+                                }
+                            "
+                            >
+                                <div class="product-wrap mb-25 scroll-zoom" data-sr-id="1" style=" visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; ">
+                                    <div class="product-img">
+                                      <a [routerLink]="['/product-detail/'+product.id]">
+                                        <img class="default-img" [src]="product.images" alt="">
+                                        <img class="hover-img" [src]="product.images" alt="">
+                                      </a>
+                                        <!-- <span class="pink">-10%</span> -->
+                                        <div class="product-action">
+                                            <div class="pro-same-action pro-wishlist">
+                                                <a (click)="addToFavourite(product.id)" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                            </div>
+                                            <div class="pro-same-action pro-cart">
+                                                <a title="Add To Cart" [routerLink]="['/product-detail/'+product.id]"><i class="pe-7s-cart"></i></a>
+                                            </div>
+                                            <div class="pro-same-action pro-quickview">
+                                                <a title="Quick View" [routerLink]="['/product-detail/'+product.id]" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-content text-center">
+                                        <h3><a [routerLink]="['/product-detail/'+product.id]">{{product.name}}</a></h3>
+                                        <div class="product-price">
+                                          <span style="color: #ee4d2d;">{{product.maxPrice | vnd }}</span>
+                                            <!-- <span class="old">$ 60.00</span> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <pagination-controls
+                  class="text-center my-pagination"
+                  previousLabel=""
+                  nextLabel=""
+                  (pageChange)="pageChange((page = $event))"
+                >
+                </pagination-controls>
+              </div>
+
+              <div class="shop-bottom-area mt-35" *ngIf="listProduct?.length == 0">
+                <div class="shopee-search-empty-result-section">
+                  <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/a60759ad1dabe909c46a817ecbf71878.png" class="shopee-search-empty-result-section__icon">
+                  <div class="shopee-search-empty-result-section__title">Không tìm thấy kết quả nào</div><div class="shopee-search-empty-result-section__hint">Hãy thử sử dụng các từ khóa chung chung hơn</div></div>
+              </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="sidebar-style mr-30">
+                <div class="sidebar-widget">
+                    <h4 class="pro-sidebar-title">Tìm kiếm</h4>
+                    <div class="pro-sidebar-search mb-50 mt-25">
+                        <form class="pro-sidebar-search-form" action="#">
+                            <input type="text" value="" (change)="searchTextChange($event)" placeholder="Tìm sản phẩm...">
+                            <button>
+                                <i class="pe-7s-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="sidebar-widget">
+                    <h4 class="pro-sidebar-title">Loại</h4>
+                    <div class="sidebar-widget-list mt-30">
+                        <ul>
+                            <li *ngFor="let t of type">
+                              <div class="sidebar-widget-list-left">
+                                  <input type="checkbox" [value]="t.typeId" (change)="typeCheckBox($event, t.typeId!)">
+                                    <a>{{t.typeName}}</a>
+                                  <span class="checkmark"></span>
+                              </div>
+                          </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <div class="sidebar-widget mt-45">
+                    <h4 class="pro-sidebar-title">Khoảng giá (VNĐ)</h4>
+                    <div class="sidebar-widget-list mt-20">
+                      <label>Từ</label>
+                      <div class="price-filter">
+                          <div id="price-slider"></div>
+                          <div class="input-number price-min">
+                              <input
+                                id="price-min"
+                                [(ngModel)]="minPrice"
+                                type="text"
+                                (keypress)="keyPressNumbers($event)"
+                                placeholder=""
+                              >
+
+                          </div>
+                          <span>đến</span>
+                          <div class="input-number price-max">
+                              <input
+                                id="price-max"
+                                [(ngModel)]="maxPrice"
+                                type="text"
+                                (keypress)="keyPressNumbers($event)"
+                                placeholder=""
+                              >
+                          </div>
+                      </div>
+
+                      <button
+                        style="width: 95%; margin-top: 5%;"
+                        class="primary-btn cta-btn"
+                        (click)="priceFilter()"
+                      >
+                        Lọc theo giá
+                      </button>
+
+
+                    </div>
+                  </div>
+                <div class="sidebar-widget mt-50">
+                    <h4 class="pro-sidebar-title">Màu sắc</h4>
+                    <div class="sidebar-widget-list mt-20">
+                        <ul>
+                            <li *ngFor="let color of colors">
+                                <div class="sidebar-widget-list-left">
+                                    <input type="checkbox" [value]="color.colorId" (change)="colorsCheckBox($event, color.colorId!)"> <a>{{color.colorName}}</a>
+                                    <span class="checkmark"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sidebar-widget mt-40">
+                    <h4 class="pro-sidebar-title">Kích thước</h4>
+                    <div class="sidebar-widget-list mt-20">
+                        <ul>
+                            <li *ngFor="let size of sizes">
+                                <div class="sidebar-widget-list-left">
+                                    <input type="checkbox" [value]="size?.id" (change)="sizesCheckBox($event, size.id!)"> <a>{{size.name}}</a>
+                                    <span class="checkmark"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+

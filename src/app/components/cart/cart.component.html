@@ -1,0 +1,97 @@
+<div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
+  <div class="container">
+      <div class="breadcrumb-content text-center">
+          <ul>
+              <li>
+                  <a routerLink="/home">TRANG CHỦ</a>
+              </li>
+              <li class="active">GIỎ HÀNG</li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+<div class="cart-main-area pt-90 pb-100">
+  <div class="container" *ngIf="cart.length > 0">
+      <h3 class="cart-page-title">GIỎ HÀNG CỦA BẠN</h3>
+      <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <form action="#">
+                  <div class="table-content table-responsive cart-table-content" >
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th></th>
+                                  <th>HÌNH ẢNH</th>
+                                  <th>TÊN SẢN PHẨM</th>
+                                  <th>GIÁ</th>
+                                  <th>SỐ LƯỢNG</th>
+                                  <th>THÀNH TIỀN</th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody *ngFor="let c of cart;let i = index">
+                              <tr>
+                                  <td>{{i + 1}}</td>
+                                  <td class="product-thumbnail">
+                                      <a><img [src]="c.image" class="thumbnail" width="100" height="100" alt=""></a>
+                                  </td>
+                                  <td class="product-name">
+                                    <a [routerLink]="['/product-detail/'+c.productId]">{{c.productName}}</a>
+                                    <p>{{c.colorName}} - {{c.sizeName}}</p>
+                                  </td>
+                                  <td class="product-price-cart"><span class="amount">{{c.price | vnd}}</span></td>
+                                  <td class="product-quantity">
+                                      <div class="cart-plus-minus">
+                                        <div class="dec qtybutton" (click)="decrement(c)">-</div>
+                                        <input
+                                          type="text"
+                                          class="cart-plus-minus-box"
+                                          (keypress)="keyPressNumbers($event)"
+                                          (change)="changeQuantity($event,c)"
+                                          value="{{c.quantity}}"
+                                        >
+                                        <div class="inc qtybutton" (click)="increment(c)">+</div>
+                                      </div>
+                                  </td>
+                                  <td class="product-subtotal">{{c.subtotal | vnd }}</td>
+                                  <td class="product-remove">
+                                    <a (click)="deleteItem(c.productOptionId)"><i class="fa fa-times"></i></a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="cart-shiping-update-wrapper">
+                              <div class="cart-shiping-update">
+                                  <a routerLink="/shop" style="margin-top: 57px;">Tiếp tục mua hàng</a>
+                              </div>
+                              <div class="cart-clear">
+                                <h4 class="grand-totall-title">Tổng tiền : <span>{{totalPrice | vnd }}</span></h4>
+                                  <br/>
+                                <!--  -->
+                                  <a (click)="checkout()">Đặt hàng</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  <!-- check cart empty -->
+  <div class="row" *ngIf="cart?.length == 0">
+    <div class="cart--empty-message">
+      <img
+        src="https://bizweb.dktcdn.net/100/438/408/themes/863105/assets/blank_cart.svg?1658742614397"
+        alt="cart"
+      />
+      <p>Giỏ hàng của bạn trống</p>
+      <span class="clearfix"></span>
+      <a class="buy-now" routerLink="/shop">Mua ngay</a>
+    </div>
+
+  </div>

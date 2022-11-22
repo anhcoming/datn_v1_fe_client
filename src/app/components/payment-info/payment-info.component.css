@@ -1,0 +1,24 @@
+.main-info-deposit {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 700px;
+  background-color: #dff0f8;
+  border-radius: 0 0 10px 10px;
+}
+.deposit-image {
+  width: 50px;
+  height: 50px;
+  margin-top: 50px;
+  margin-left: 45%;
+}
+.main-info {
+  margin-top: 40px;
+  margin-left: 20%;
+  text-align: left;
+  margin-right: 20%;
+}
+.label-info {
+  margin-top: 20px;
+  font-size: 15px;
+}

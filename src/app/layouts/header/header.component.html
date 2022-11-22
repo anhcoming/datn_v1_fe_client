@@ -1,0 +1,197 @@
+<header
+  class="header-area header-padding-1 sticky-bar header-res-padding clearfix"
+>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-2 col-lg-2 col-md-6 col-4">
+        <div class="logo">
+          <a href="index.html">
+            <img alt="" src="assets/img/logo/logo.png" />
+          </a>
+        </div>
+      </div>
+      <div class="col-xl-8 col-lg-8 d-none d-lg-block">
+        <div class="main-menu">
+          <nav>
+            <ul>
+              <li><a routerLink="/home">TRANG CHỦ</a></li>
+
+              <li>
+                <a>SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
+                <ul class="mega-menu">
+                  <li>
+                    <ul>
+                      <li class="mega-menu-title"><a>Nam</a></li>
+                      <li><a routerLink="shop/ao-polo-nam">Áo Polo nam</a></li>
+                      <li>
+                        <a routerLink="shop/ao-so-mi-nam">Áo sơ mi nam</a>
+                      </li>
+                      <li><a routerLink="shop/ao-vest-nam">Áo vest nam</a></li>
+                      <li><a routerLink="shop/ao-thun-nam">Áo thun</a></li>
+                      <li><a routerLink="shop/ao-ba-lo">Áo ba lỗ</a></li>
+                      <li>
+                        <a routerLink="shop/ao-so-mi-nam-co-cao"
+                          >Áo sơ mi cổ cao</a
+                        >
+                      </li>
+                      <li><a routerLink="shop/ao-khoac-nam">Áo khoác</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul>
+                      <li class="mega-menu-title"><a>Nữ</a></li>
+                      <li><a routerLink="shop/ao-thun-nu">Áo thun</a></li>
+                      <li><a routerLink="shop/ao-so-mi-nu">Áo sơ mi</a></li>
+                      <li><a routerLink="shop/ao-khoac-nu">Áo khoác</a></li>
+                      <li><a routerLink="shop/ao-polo-nu">Áo Polo</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a routerLink="/blog">TIN TỨC</a>
+              </li>
+              <li><a routerLink="/size">CHỌN SIZE</a></li>
+              <li><a routerLink="/contact">LIÊN HỆ</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="col-xl-2 col-lg-2 col-md-6 col-8">
+        <div class="header-right-wrap">
+          <div class="same-style header-search"></div>
+          <div class="same-style account-satting header-tool user">
+            <a class="account-satting-active"
+              ><i class="pe-7s-user-female"></i
+            ></a>
+            <div *ngIf="!isLoggedIn">
+              <ul class="account_header">
+                <li>
+                  <a href="/sign-up">Đăng ký</a>
+                </li>
+                <li>
+                  <a href="/sign-in">Đăng nhập</a>
+                </li>
+              </ul>
+            </div>
+
+            <div *ngIf="isLoggedIn">
+              <ul class="account_header">
+                <li>
+                  <a routerLink="user/profile">Tài khoản</a>
+                </li>
+                <li>
+                  <a routerLink="user/my-order">Đơn hàng của tôi</a>
+                </li>
+                <li>
+                  <a routerLink="user/change-password">Đổi mật khẩu</a>
+                </li>
+                <li>
+                  <a (click)="logout()">Đăng xuất</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="same-style header-wishlist" *ngIf="isLoggedIn">
+            <a><i class="pe-7s-like"></i></a>
+          </div>
+
+          <!-- create icon notification  -->
+          <div class="same-style cart-wrap" *ngIf="isLoggedIn">
+            <div class="dropdown">
+              <div class="col">
+                <div ngbDropdown class="d-inline-block">
+                  <button
+                    type="button"
+                    class="icon-cart"
+                    id="dropdownBasic1"
+                    ngbDropdownToggle
+                  >
+                    <i class="pe-7s-bell"></i>
+                    <span class="count-style notification">{{
+                      numberNotiUnRead
+                    }}</span>
+                  </button>
+                  <div
+                    class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    style="width: 20rem !important; padding: 0 "
+                    ngbDropdownMenu
+                    aria-labelledby="dropdownBasic1"
+                  >
+                    <div class="notification-header">
+                      <h3 class="dropdown-header">Thông báo</h3>
+                    </div>
+                    <button
+                      ngbDropdownItem
+                      class="dropdown-item d-flex align-items-center bg-light"
+                      href="#"
+                      style="white-space: normal;
+                      padding-top: 0.5rem;
+                      padding-bottom: 0.5rem;
+                      border-left: 1px solid #e3e6f0;
+                      border-right: 1px solid #e3e6f0;
+                      border-bottom: 1px solid #e3e6f0;
+                      line-height: 1.3rem;
+                      align-items: center!important;
+                      display: flex!important;
+                      background-color: #f8f9fc!important;
+                      width: 100%;
+                      padding: 0.25rem 1.5rem;
+                      clear: both;
+                      font-weight: 400;
+                      color: #3a3b45;
+                      text-align: inherit;
+                      border: 0;
+                      font-size: 15px;
+                      border-bottom: 1px solid #e3e6f0;
+                      "
+                      *ngFor="let noti of notifications"
+                      (click)="readNotificationById(noti.id,noti.objectType,noti.objectTypeId)"
+                    >
+                      <div class="mr-3">
+                        <div class="icon-circle bg-primary">
+                          <i class="fas fa-file-alt text-white"></i>
+                        </div>
+                      </div>
+                      <div>
+                        <div class="small text-gray-500">
+                          {{noti?.createdDate}}
+                        </div>
+                        <span
+                          style="
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                          "
+                          [ngStyle]="{ 'font-weight': noti?.isRead ? 'normal' : 'bold' }"
+                        >
+                          {{noti?.content}}
+                        </span>
+                      </div>
+                    </button>
+                    <div class='p-2 d-flex justify-content-between'>
+                      <a class="small text-left" (click)="readAllNotification()">Đánh dấu đã đọc tất cả</a>
+                      <a class="small text-right">Xem thêm...</a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+
+          <div class="same-style cart-wrap" *ngIf="isLoggedIn">
+            <button class="icon-cart" routerLink="/cart">
+              <i class="pe-7s-shopbag"></i>
+              <span class="count-style">{{ cartItem?.countItem }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

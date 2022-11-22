@@ -1,0 +1,59 @@
+<div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
+  <div class="container p-3">
+    <div class="breadcrumb-content text-center">
+      <ul>
+        <li>
+          <a routerLink="/home">Trang chủ</a>
+        </li>
+        <li>
+          <a routerLink="/blog">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container" style="padding:2% 2%">
+  <div class="row">
+    <div class="col-8">
+      <div style="font-size: 17px;" class="mt-3 fw-5 container">
+        <span><a style="color:blueviolet" routerLink="/blog">Trang chủ</a></span> >> <span><a style="color:blueviolet"
+            routerLink="/blog">Blogs</a></span> >>
+        <span>{{post?.title}}</span>
+        <p>ĐĂNG NGÀY: {{post?.createdDate|date:"dd-MM-yyyy"}}</p>
+      </div><br>
+
+      <div class="container">
+        <div class="title fw-bold">
+          <h2>{{post?.title}}</h2>
+        </div>
+        <p class="e2e-inner-html-bound image" [innerHTML]="post?.content"></p>
+      </div>
+    </div>
+    <div class="col-4 h3 mt-3 text-end">Top bán chạy<br><br>
+    <div class="post" *ngFor="let item of productSeller" routerLink="/blog/{{item.productId}}">
+      <div style="width:250px;float:right;">
+        <img class=" img-fluid" src={{item.image}} alt="">
+        <p style="text-align: left;" class="fw-200">{{item.name}}</p>
+      </div></div>
+    </div>
+    <br>
+    <br>
+    <h4 class="mt-5">Danh mục: &nbsp;<button class="badge alert-primary">{{post?.name}}</button></h4>
+    <hr>
+  </div>
+
+  <span class="fw-300 h4 mt-5"><b>Bài viết cùng chủ đề:</b></span>
+
+  <div class="mt-4">
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+      (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+      <div style="height:240px" ngxSlickItem *ngFor="let slide of tip" class="slide p-1">
+        <div style="height: 170px;overflow: hidden;"><img class="hei" style="width:120%;overflow: hidden;"
+            src="{{slide.image}}">
+        </div>
+        <h4 class=" text-dark">{{slide.title}}</h4>
+
+      </div>
+
+    </ngx-slick-carousel>
+  </div>

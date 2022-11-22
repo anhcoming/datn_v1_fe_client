@@ -1,0 +1,94 @@
+<!-- =======Danh mục  -->
+<div class="breadcrumb-area pt-35 pb-35 bg-gray-3">
+  <div class="container">
+    <div class="breadcrumb-content text-center">
+      <ul>
+        <li>
+          <a routerLink="/home">Trang chủ</a>
+        </li>
+        <li class="active text-dark "><a (click)="reload()">Blog</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="mt-4">
+  <ngx-slick-carousel class="carousel container" #slickModal="slick-carousel" [config]="slideConfig"
+    (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+    (beforeChange)="beforeChange($event)">
+    <div style="height:230px" ngxSlickItem (click)="openTopic(slide)" *ngFor="let slide of topic" class="slide p-1">
+      <div style="height: 200px;overflow: hidden;"><img style="width:100%;overflow: hidden;" src="{{slide.image}}">
+      </div>
+      <p class="text-center text-dark">{{slide.name}}</p>
+
+    </div>
+
+  </ngx-slick-carousel>
+</div>
+
+<!-- <div class="container cate pt-4">
+
+  <div class="ak mt-3 mb-5 container" style="padding:5px 5px">
+    <div class="hover03 column ak__item" *ngFor="let item of topic">
+      <figure><img (click)="openTopic(item)" style="width:100%;height:100%; object-fit: cover;object-position: 0% 0% "
+          src={{item.image}} alt=""></figure>
+      <p class="text-center text-dark">{{item.name}}</p>
+    </div>
+  </div>
+</div> -->
+
+<!-- ===============TOP BÁN CHẠY -->
+
+<div class="container mb-5 mt-5">
+  <div class="row">
+    <div class="col-9" style="background-color:rgb(255, 255, 255)">
+      <span class="h5">{{topicName|uppercase}}</span>
+      <hr>
+      <div class="blog">
+        <div class="row post " *ngFor="let item of blog | paginate: {
+            itemsPerPage: pageSize,
+            currentPage: page+1,
+            totalItems: totalElements }" routerLink="/blog/{{item.id}}">
+          <div class="col-sm-4 mb-1">
+            <img style="height:200px;object-fit: contain " class="center img-fluid" src={{item.image}} alt="">
+          </div>
+          <div class="center col-sm-8 ">
+            <p class="h5">{{item.title}}</p>
+            <div class="mb-3" style="height:50px;overflow: hidden;">
+              <p style="color:rgb(75, 75, 75)">{{item.description}}</p>
+            </div>
+            <button class="btn text-dark btn-outline-dark disabled" style="outline: #7729f5 ;"><svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock"
+                viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
+              </svg>&nbsp;{{item.createdDate|date:"dd-MM-yyyy"}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ========tips sieu hay  -->
+    <div class="col-3 " style="background-color:rgb(255, 255, 255)">
+      <div class="blog">
+        <span style="width:250px;float:right;" class="h5">TIPS SIÊU HAY</span>
+        <div class="post" *ngFor="let item of tip" routerLink="/blog/{{item.id}}">
+
+          <div style="width:250px;float:right;">
+            <hr>
+            <img class=" img-fluid" src={{item.image}} alt="">
+            <p style="text-align: left;" class="fw-200">{{item.title}}</p>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="mt-5">
+    <pagination-controls class=" text-center my-pagination" previousLabel="" nextLabel=""
+      (pageChange)="pageChange((page = $event))">
+    </pagination-controls>
+
+  </div>

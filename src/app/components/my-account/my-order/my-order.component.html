@@ -1,0 +1,291 @@
+
+<h1 class="title-head margin-top-0" style="margin: 20px;color: #fcaf17;">
+  Đơn hàng của tôi
+  <span style="float :right;">{{numberOrder}} đơn hàng</span>
+</h1>
+
+<div class="abc">
+  <div class='form-group'>
+    <input type="text" value="" class='form-control' id="myInput" (change)="search($event)" name='str' placeholder ="Tìm kiếm theo mã đơn hàng">
+  </div>
+  <div class='form-group' style="margin-bottom: 25px;">
+    <select class="form-select" (change)="changeStatus($event)">
+      <option value="">Tất cả</option>
+      <option *ngFor="let s of status" [value]="s.statusId">{{s.statusName}}</option>
+    </select>
+  </div>
+</div>
+
+
+<div class="col-xs-12 col-sm-12 col-lg-12 no-padding">
+  <div class="my-account" *ngIf="orders.length > 0">
+    <div class="dashboard">
+      <div class="recent-orders">
+        <div
+          class="table-responsive-block tab-all"
+          style="-ms-overflow-x: auto"
+        >
+          <table class="table table-cart table-order" id="my-orders-table">
+            <thead class="thead-default">
+              <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày mua</th>
+                <th>Địa chỉ</th>
+                <th>Giá trị<br />đơn hàng</th>
+                <th>Trạng thái thanh toán</th>
+                <th>Trạng thái đơn hàng</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let order of orders
+                | paginate
+                : {
+                    itemsPerPage: pageSize,
+                    currentPage: page+1,
+                    totalItems: totalElements
+                  }
+              ">
+                <td>
+                  <a style="text-decoration: none;" [routerLink]="['/user/order-detail/' + order.orderId]">{{order?.orderCode}}</a>
+                </td>
+                <td>{{order?.createDate}}</td>
+                <td>
+                  {{order?.address}}
+                </td>
+                <td>
+                  <span class="price" style="color:#ff0303;">{{order?.totalPrice}}</span>
+                </td>
+                <td>
+                  <span class="span_pending" [ngStyle]="{'color': order.payed == true ? '#177EF1' : '#02080E'}">{{order?.payed ?  'Đã thanh toán' : 'Chưa thanh toán' }}</span>
+                </td>
+                <td>
+                  <span class="span_" [ngStyle]="{'color': order.status === 'CANCEL' ? 'red' : ''}">{{order?.statusValue}}</span>
+                </td>
+                <td *ngIf="order.status == 'PENDING'" style="border: initial;">
+                  <button
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    class="btn btn-danger"
+                    (click)="cancelOrder(order.orderId!)"
+                  >Hủy
+                  </button>
+                </td>
+                <td *ngIf="order.status == 'SHIPPING'" style="border: initial;">
+                  <button
+                    data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                    class="btn btn-success"
+                    (click)="submitOrder(order.orderId!)"
+                  >Đã nhận hàng
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls
+                    class="text-center my-pagination"
+                    previousLabel=""
+                    nextLabel=""
+                    (pageChange)="pageChange((page = $event))"
+                >
+          </pagination-controls>
+        </div>
+
+        <div
+          class="paginate-pages pull-right page-account text-right col-xs-12 col-sm-12 col-md-12 col-lg-12"
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="LHWdmn" *ngIf="orders.length == 0">
+    <div class="bU5w7c">
+      <div class="A849D8">
+
+      </div>
+      <div class="hKbGrP">Chưa có đơn hàng</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal CancelOrder -->
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  aria-hidden="true"
+  #exampleModal
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:25px;">Chọn Lý Do Hủy</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetReason()"></button>
+      </div>
+      <div class="modal-body">
+          <form class="row g-3" style="margin-left: 20px;">
+
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Muốn thay đổi địa chỉ giao hàng"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Muốn thay đổi địa chỉ giao hàng
+              </label>
+            </div>
+
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Muốn nhập/thay đổi mã Voucher"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Muốn nhập/thay đổi mã Voucher
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Muốn thay đổi sản phẩm trong đơn hàng (size, màu sắc, số lượng,...)"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Muốn thay đổi sản phẩm trong đơn hàng (size, màu sắc, số lượng,...)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Thủ tục thanh toán quá rắc rối"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Thủ tục thanh toán quá rắc rối
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Tìm thấy giá rẻ hơn ở chỗ khác"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Tìm thấy giá rẻ hơn ở chỗ khác
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                value="Đổi ý, không muốn mua nữa"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault1">
+                Đổi ý, không muốn mua nữa
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault2"
+                value="Khác"
+                [(ngModel)]="reason"
+              >
+              <label class="form-check-label" for="flexRadioDefault2">
+                Khác
+              </label>
+            </div>
+
+            <div class="" style="text-align: center;">
+              <button
+                type="submit"
+                class="btn btn-success"
+                style="width: inherit;margin-left: -25px;"
+                (click)="confirmReasonOrder()"
+                [attr.disabled]="!reason ? '' : null"
+                data-bs-dismiss="modal"
+              >
+                XÁC NHẬN
+              </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal submitOrderReceived -->
+
+<div
+  class="modal fade"
+  id="exampleModal2"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  aria-hidden="true"
+  #exampleModal2
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:25px;text-align:center;">Nhập chú thích</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="submitOrderReceived()">
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Chú thích (có thể nhập hoặc không)</label>
+            <textarea class="form-control" id="message-text" formControlName="note" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="submitOrderReceived()"
+          data-bs-dismiss="modal"
+        >
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-8">
+            <h2>Mã khuyến mãi của tôi</h2>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Mã khuyễn mãi</th>
+            <th>Chi tiết</th>
+            <th>Mô tả chi tiết</th>
+            <th>Ngày bắt đầu</th>
+            <th>Ngày kết thúc</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let d of discount
+
+        | paginate
+        : {
+            itemsPerPage: pageSize,
+            currentPage: page+1,
+            totalItems: totalElements
+          };let i=index
+        ">
+          <tr>
+            <td>{{i+1}}</td>
+            <td>{{d?.code}}</td>
+            <td>
+              <ul>
+                <li *ngFor="let c of d.des">{{c}}</li>
+              </ul>
+            </td>
+            <td>{{d?.startDate}}</td>
+            <td>{{d?.endDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls
+                    class="text-center my-pagination"
+                    previousLabel=""
+                    nextLabel=""
+                    (pageChange)="pageChange((page = $event))"
+                >
+      </pagination-controls>
+    </div>
+  </div>
+</div>

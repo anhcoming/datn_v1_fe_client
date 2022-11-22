@@ -1,0 +1,51 @@
+<ngx-slick-carousel
+  class="carousel"
+  #slickModal="slick-carousel"
+  [config]="slideConfig"
+>
+  <div
+    ngxSlickItem
+    class="owl-item active"
+    *ngFor="let pdr of productRelated"
+    style="width: 270.3px; margin-right: 30px"
+  >
+    <div class="product-wrap">
+      <div class="product-img">
+        <a [routerLink]="['/product-detail/' + pdr.productId]">
+          <img class="default-img" [src]="pdr?.image" alt="Hihi" />
+        </a>
+        <div class="product-action">
+          <div class="pro-same-action pro-wishlist">
+            <a title="Wishlist"><i class="pe-7s-like"></i></a>
+          </div>
+          <div class="pro-same-action pro-cart">
+            <a
+              title="Add To Cart"
+              [routerLink]="['/product-detail/' + pdr.productId]"
+              ><i class="pe-7s-cart"></i
+            ></a>
+          </div>
+          <div class="pro-same-action pro-quickview">
+            <a
+              title="Quick View"
+              [routerLink]="['/product-detail/' + pdr.productId]"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              ><i class="pe-7s-look"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="product-content text-center">
+        <h3>
+          <a [routerLink]="['/product-detail/' + pdr.productId]">{{
+            pdr?.productName
+          }}</a>
+        </h3>
+        <div class="product-price">
+          <span style="color: red">{{ pdr.price | vnd }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-slick-carousel>

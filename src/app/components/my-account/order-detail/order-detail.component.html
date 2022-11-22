@@ -1,0 +1,402 @@
+<div
+  class="head-title clearfix"
+  style="padding: 22px 65px; border-bottom: 1px solid #dde1ef"
+>
+  <h1 class="has-back" style="color: #fcaf17; float: left; font-size: 20px">
+    <a
+      class="back"
+      routerLink="/user/my-order"
+      style="
+        height: 19px;
+        width: 27px;
+        display: inline-block;
+        left: 0;
+        top: 0;
+        background: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/back.svg);
+        cursor: pointer;
+      "
+    >
+    </a
+    >Chi tiết đơn hàng {{ orderDetail?.orderCode }}
+  </h1>
+  <span class="note order_date" style="float: right">{{
+    orderDetail?.createDate
+  }}</span>
+</div>
+<div class="details" style="padding: 20px 65px">
+  <div
+    class="payment_status"
+    style="margin-right: 35px; display: inline-block; line-height: 16px"
+  >
+    <span class="note">Trạng thái thanh toán : </span>
+
+    <span class="status_pending">
+      <span class="span_pending" style="color: rgb(252, 175, 23)"
+        ><strong>{{
+          orderDetail?.payed ? "Đã thanh toán" : "Chưa thanh toán"
+        }}</strong></span
+      >
+    </span>
+  </div>
+  <div
+    class="shipping_status"
+    style="display: inline-block; font-size: 14px; line-height: 16px"
+  >
+    <span class="note">Trạng thái đơn hàng : </span>
+
+    <b class="span_" style="color: rgb(252, 175, 23)">
+      {{ orderDetail?.statusOrder }}
+    </b>
+  </div>
+
+  <div
+    class="row"
+    style="margin-right: -10px; margin-left: -10px; margin-top: 30px"
+  >
+    <div
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-6 body_order"
+      style="padding-left: 10px"
+    >
+      <div class="box-address">
+        <h2
+          class="title-head"
+          style="
+            border: none;
+            text-align: left;
+            padding: 0;
+            font-family: svn-gilroy;
+            margin-bottom: 5px;
+            color: #000;
+            font-size: 24px;
+          "
+        >
+          Địa chỉ giao hàng
+        </h2>
+
+        <div
+          class="address box-des"
+          style="
+            min-height: 110px;
+            padding: 13px 15px 10px 20px;
+            border: 1px solid #dde1ef;
+            background: 0 0;
+          "
+        >
+          <p>
+            <strong>{{ orderDetail?.nameOfRecipient }}</strong>
+          </p>
+          <p>Địa chỉ: {{ orderDetail?.shipAddress }}</p>
+
+          <p>Số điện thoại: {{ orderDetail?.phoneNumber }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 body_order">
+      <div class="box-address">
+        <h2
+          class="title-head"
+          style="
+            border: none;
+            text-align: left;
+            padding: 0;
+            font-family: svn-gilroy;
+            margin-bottom: 5px;
+            color: #000;
+            font-size: 24px;
+          "
+        >
+          Thanh toán
+        </h2>
+        <div
+          class="box-des"
+          style="
+            min-height: 110px;
+            padding: 13px 15px 10px 20px;
+            border: 1px solid #dde1ef;
+            background: 0 0;
+          "
+        >
+          <p>{{ orderDetail?.paymentMethod }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 body_order">
+      <div class="box-address">
+        <h2
+          class="title-head"
+          style="
+            border: none;
+            text-align: left;
+            padding: 0;
+            font-family: svn-gilroy;
+            margin-bottom: 5px;
+            color: #000;
+            font-size: 24px;
+          "
+        >
+          Ghi chú
+        </h2>
+        <div
+          class="box-des"
+          style="
+            min-height: 110px;
+            padding: 13px 15px 10px 20px;
+            border: 1px solid #dde1ef;
+            background: 0 0;
+          "
+        >
+          <p>{{ orderDetail?.note }}</p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-xs-12 col-sm-12 col-md-12"
+      style="padding-left: 10px; padding-right: 10px"
+    >
+      <div
+        class="table-order"
+        style="
+          border-top: 1px solid #e0e0e0;
+          border-left: 0;
+          border-right: 0;
+          margin-top: 20px;
+        "
+      >
+        <div class="table-responsive-block table_mobile">
+          <table
+            class="table table-cart"
+            id="order_details"
+            style="
+              width: 100%;
+              max-width: 100%;
+              margin-bottom: 1rem;
+              background-color: transparent;
+              border-bottom: 1px solid #e0e0e0;
+            "
+          >
+            <thead class="thead-default theborder">
+              <tr>
+                <th>Sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Tổng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let product of productOrder"
+                style="
+                  border-bottom: 1px solid #e0e0e0;
+                  border: 0;
+                  padding: 15px 0;
+                  width: 15%;
+                  line-height: 1;
+                "
+              >
+                <td
+                  class="link"
+                  data-title="Tên"
+                  style="border: 0; padding: 15px 0"
+                >
+                  <div class="image_order" style="float: left; width: 97px">
+                    <a [routerLink]="['/product-detail/' + product.productId]">
+                      <img
+                        [src]="product.image"
+                        width="100"
+                        height="100"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                  <div
+                    class="content_right"
+                    style="
+                      margin-top: 20px;
+                      text-align: left;
+                      font-size: 14px;
+                      line-height: 16px;
+                      align-self: normal;
+                      display: flex;
+                      flex-flow: column;
+                      padding-left: 41px;
+                    "
+                  >
+                    <a [routerLink]="['/product-detail/' + product.productId]">{{ product?.productName }}</a>
+
+                    <p style="color: rgb(130, 130, 130); font-size: 12px">
+                      {{ product?.colorName }} / {{ product?.sizeName }}
+                    </p>
+                  </div>
+                </td>
+                <td
+                  class="price"
+                  data-title="Giá"
+                  style="border: 0; padding: 35px 0"
+                >
+                  {{ product?.price | currency:"VND" }}
+                </td>
+                <td data-title="Số lượng" style="border: 0; padding: 35px 0">
+                  {{ product?.qty }}
+                </td>
+                <td
+                  class="price numeric"
+                  data-title="Tổng"
+                  style="
+                    border: 0;
+                    padding: 37px 0;
+                    color: rgb(252, 175, 23);
+                    font-size: 16px;
+                  "
+                >
+                  {{ product?.subtotal | currency:"VND" }}
+                </td>
+
+                <td
+                  *ngIf="
+                    orderDetail?.status == 'RECEIVED' &&
+                    product.reviewId == null
+                      ? true
+                      : false
+                  "
+                >
+                  <button
+                    class="btn btn-primary"
+                    style="margin-top: 17px"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    (click)="showModalRating(product.productId)"
+                  >
+                    Đánh giá
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <table class="table totalorders" style="margin-left: 300px">
+          <tfoot>
+            <tr class="order_summary">
+              <td
+                colspan="1"
+                style="border: 0; text-align: right; vertical-align: middle"
+              >
+                Phí vận chuyển
+              </td>
+              <td
+                class="total money right"
+                style="border: 0; text-align: left; vertical-align: middle"
+              >
+                {{ orderDetail?.shipPrice }}
+              </td>
+            </tr>
+
+            <tr class="order_summary">
+              <td
+                colspan="1"
+                style="border: 0; text-align: right; vertical-align: middle"
+              >
+                Giảm giá
+              </td>
+              <td
+                class="total money right"
+                style="border: 0; text-align: left; vertical-align: middle"
+              >
+                {{ orderDetail?.totalDiscount }}
+              </td>
+            </tr>
+
+            <tr class="order_summary order_total">
+              <td style="border: 0; text-align: right; vertical-align: middle">
+                Tổng tiền
+              </td>
+              <td
+                class="right"
+                style="border: 0; text-align: left; vertical-align: middle"
+              >
+                <strong style="color: rgb(252, 175, 23); font-size: 16px">
+                  {{ orderDetail?.totalPrice }}
+                </strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<a
+  class="back"
+  routerLink="/user/my-order"
+  style="
+    display: inline-block;
+    width: 280px;
+    line-height: 48px;
+    text-align: center;
+    background: #fcaf17;
+    color: #fff;
+    font-family: svn-gilroy bold;
+    font-size: 18px;
+    margin: 10px 30px 28px 41px;
+    float: right;
+    right: 0;
+    bottom: -68px;
+    border-radius: 4px;
+  "
+>
+  QUAY LẠI</a
+>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Đánh giá sản phẩm</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-5">
+          <form [formGroup]="ratingForm">
+            <div class="star-box">
+              <div class="ratting-star">
+                <ngb-rating
+                  [max]="5"
+                  [(rate)]="starRating"
+                  formControlName="starRating"
+                  [readonly]="false"
+                ></ngb-rating>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="Viết nội dung đánh giá của bạn"
+                formControlName="contentRating"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="rating()">Gửi đánh giá</button>
+      </div>
+    </div>
+  </div>
+</div>

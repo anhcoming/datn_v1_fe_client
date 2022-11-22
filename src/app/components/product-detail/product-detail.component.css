@@ -1,0 +1,279 @@
+.tick-line p {
+  padding-left: 25px;
+  background: url(https://bizweb.sapocdn.net/100/438/408/themes/863105/assets/tick-line.svg)
+    0 4px no-repeat;
+  margin-bottom: 5px;
+}
+
+ngb-rating {
+  color: #ffc107;
+  font-size: 32px;
+}
+
+.pro-details-rating ngb-rating {
+  color: #ffc107;
+  font-size: 20px;
+}
+
+.product-ratings-comments-view__no-data {
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.rating-review {
+  margin-top: -6px;
+  margin-left: -22px;
+  margin-right: 84px;
+}
+
+.rating-review ngb-rating {
+  color: #ffc107;
+  font-size: 17px;
+}
+
+.review-content {
+  margin-left: -45px;
+}
+
+.rating-time {
+  position: absolute;
+  padding: 13px;
+  margin: 12px 0px 0px -13px;
+}
+
+.single-review .review-bottom p {
+  margin-top: 35px;
+}
+
+.section-title h2 {
+  margin-top: 40px;
+}
+
+/* Review */
+
+.section-title {
+  font-weight: 500;
+  font-size: 20px;
+  color: #212121;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 17px;
+  margin-top: -25px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  margin: 0 auto; /* Center website */
+  max-width: 800px; /* Max width */
+  padding: 20px;
+}
+
+.heading {
+  font-size: 48px;
+  margin-right: 25px;
+}
+
+.score-max {
+  font-size: 32px;
+  color: #9e9e9e;
+  text-align: center;
+  line-height: 40px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top: 10px;
+}
+
+.middle {
+  margin-top: 10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.head-rating {
+  padding: 17px 21px;
+}
+
+.row {
+  padding: 17px 21px;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {
+  width: 60%;
+  height: 18px;
+  background-color: #04aa6d;
+}
+.bar-4 {
+  width: 30%;
+  height: 18px;
+  background-color: #2196f3;
+}
+.bar-3 {
+  width: 10%;
+  height: 18px;
+  background-color: #00bcd4;
+}
+.bar-2 {
+  width: 4%;
+  height: 18px;
+  background-color: #ff9800;
+}
+.bar-1 {
+  width: 15%;
+  height: 18px;
+  background-color: #f44336;
+}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side,
+  .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
+
+/*  */
+
+.pdp-mod-filterSort {
+  height: 44px;
+  padding-left: 24px;
+  border-top: 1px solid #eff0f5;
+  border-bottom: 1px solid #eff0f5;
+  margin-top: 25px;
+}
+
+.pdp-mod-filterSort .title {
+  font-weight: 500;
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  font-size: 14px;
+  color: #212121;
+}
+
+.pdp-mod-filterSort .oper {
+  float: right;
+  display: inline-block;
+  padding: 0 12px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 13px;
+  color: #757575;
+  cursor: pointer;
+}
+
+/*  */
+
+.mod-reviews .item {
+  padding: 17px 21px;
+  color: grey;
+  font-size: 12px;
+  border-bottom: 1px solid #eff0f5;
+}
+
+.starCtn {
+  margin-right: 6px;
+}
+
+.top .title {
+  font-size: 12px;
+  display: inline-block;
+  overflow: hidden;
+  word-break: break-word;
+  color: #757575;
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.content {
+  color: #212121;
+  font-size: 15px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  display: inline-block;
+  margin-left: -4px;
+}
+
+.middle-review {
+  float: left;
+  width: 70%;
+  margin-left: -90px;
+  margin: 25px 0 0 -90px;
+  font-size: 12px;
+}
+
+.container-star ngb-rating {
+  color: #ffc107;
+  font-size: 20px;
+}
+
+/* Slide */
+
+.slick-slider {
+  width: 88%;
+  margin: auto;
+}
+
+body .slick-prev,
+body .slick-next {
+  height: 45px;
+  width: 40px;
+  background: grey !important;
+  z-index: 100;
+}
+
+.slick-slider .slick-prev:before,
+.slick-prev:before {
+  background-color: black;
+}
+
+.option-heading__sizeguide {
+  color: #2f5acf;
+}

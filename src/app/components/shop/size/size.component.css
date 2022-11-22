@@ -1,0 +1,16 @@
+
+.size-suggestion__size-width span {
+  background-color: #313131;
+  color: white;
+}
+
+.table-sizechart thead td {
+  background-color: #313131;
+  color: white
+}
+
+.mat-slider.mat-accent .mat-slider-track-fill,
+.mat-slider.mat-accent .mat-slider-thumb,
+.mat-slider.mat-accent .mat-slider-thumb-label {
+  background-color: #313131;
+}
