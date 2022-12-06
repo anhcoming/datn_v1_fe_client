@@ -10,13 +10,13 @@
           <ng-container *ngFor="let slide of slides">
             <ng-template carouselSlide>
               <div class="owl-item cloned" style="width: 1519.2px">
-                <div class="single-slider slider-height-1 bg-purple">
+                <div class="single-slider slider-height-1 bg-gray">
                   <div class="container">
                     <div class="row">
                       <div class="col-xl-6 col-lg-6 col-md-6 col-12 col-sm-6">
                         <div class="slider-content slider-animated-1">
-                          <h3 class="animated">MÙA HÈ SÔI ĐỘNG</h3>
-                          <h1 class="animated">ƯU ĐÃI MÙA HÈ <br />BỘ SƯU TẬP 2022</h1>
+                          <h3 class="animated">GIÀY THỂ THAO CÁ TÍNH</h3>
+                          <h1 class="animated">RẤT NHIỀU ƯU ĐÃI <br />CHÀO XUÂN 2023</h1>
                           <div class="slider-btn btn-hover">
                             <a class="animated" routerLink="/shop">MUA SẮM NGAY</a>
                           </div>
@@ -158,20 +158,19 @@
       <div class="row">
         <div *ngFor="let item of blog ; let i= index" routerLink="/blog/{{item.id}}" class="col-lg-4 col-md-6 col-sm-6">
           <div *ngIf="i<3" class="blog-wrap scroll-zoom">
-            <div class="blog-img" style="height:240px;position: relative;;">
-              <a><img src="{{item.image}}" alt="" /></a>
+            <div class="blog-img" style="height:400px;position: relative;;">
+              <a><img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/a96a1b62-d6b4-4c91-b1db-ae68863243af/air-force-1-07-craft-shoe-RxBngv.png" alt="" /></a>
               <span class="purple" >{{item.name}}</span>
             </div>
             <div class="blog-content-wrap">
               <div class="blog-content text-center">
                 <h3>
-                  <a class="purple" style="font-size: 15px">{{item.title}}<br />
+                  <a class="red" style="font-size: 15px">{{item.title}}<br />
                   </a>
                 </h3>
             </div>
           </div>
         </div>
-  
       </div>
     </div>
   </div>

@@ -18,7 +18,7 @@ export class SizeComponent implements OnInit {
   constructor(private size: SizeService,) {
 
   }
-  getSizeCate = "S";
+  getSizeCate = "38";
   nameControl = new FormControl('');
   products: Product[] = [];
   image = [];
@@ -32,7 +32,7 @@ export class SizeComponent implements OnInit {
   check = new FormControl();
 
 
-  height: string = "149";
+  height: string = "25.5";
   updateHeight($event: any) {
     this.height = $event.value;
     console.log(this.height);

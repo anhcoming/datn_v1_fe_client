@@ -16,5 +16,4 @@ export class ContactComponent implements OnInit {
       this.spinner.hide();
     }, 2000);
   }
-
 }
