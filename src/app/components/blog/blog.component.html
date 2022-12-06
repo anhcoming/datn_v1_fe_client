@@ -15,8 +15,8 @@
   <ngx-slick-carousel class="carousel container" #slickModal="slick-carousel" [config]="slideConfig"
     (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
     (beforeChange)="beforeChange($event)">
-    <div style="height:230px" ngxSlickItem (click)="openTopic(slide)" *ngFor="let slide of topic" class="slide p-1">
-      <div style="height: 200px;overflow: hidden;"><img style="width:100%;overflow: hidden;" src="{{slide.image}}">
+    <div style="height:300px" ngxSlickItem (click)="openTopic(slide)" *ngFor="let slide of topic" class="slide p-1">
+      <div style="height: 300px;overflow: hidden;"><img style="width:100%;overflow: hidden;" src="{{slide.image}}">
       </div>
       <p class="text-center text-dark">{{slide.name}}</p>
 
@@ -71,7 +71,7 @@
     <!-- ========tips sieu hay  -->
     <div class="col-3 " style="background-color:rgb(255, 255, 255)">
       <div class="blog">
-        <span style="width:250px;float:right;" class="h5">TIPS SIÊU HAY</span>
+        <span style="width:250px;float:right;" class="h5">Các mẹo hữu ích chọn giày</span>
         <div class="post" *ngFor="let item of tip" routerLink="/blog/{{item.id}}">
 
           <div style="width:250px;float:right;">

@@ -17,7 +17,7 @@
     <main class="site-size-chart">
       <div class="container container--medium">
         <h1 class="size-chart__heading">
-          Hướng dẫn chọn size chuẩn
+          Hướng dẫn chọn size theo bàn chân
         </h1>
         <div class="size-chart__head">
           <span>1</span>
@@ -27,14 +27,14 @@
         <!-- <div class="size-chart__inner"> -->
         <div class="grid">
           <div class="grid__column four-twelfths mobile--one-whole">
-            <h3 style="margin-top:0.19rem;margin-bottom: 2.5rem;" class="size-chart__title">Loại sản phẩm</h3>
+            <h3 style="margin-top:0.19rem;margin-bottom: 2.5rem;" class="size-chart__title">Kiểu giày</h3>
             <div id="size-select-table" style="width: 100%;">
 
               <mat-form-field style="width:100%">
                 <mat-label style="color: #343232;">{{nameProduct}}</mat-label>
                 <mat-select style="max-height:220px">
                   <mat-form-field style="width:100%;" class="example-full-width" appearance="fill">
-                    <input matInput placeholder="Mời bạn nhập loại sản phẩm..." [formControl]="nameControl">
+                    <input matInput placeholder="Mời bạn chọn hãng giày..." [formControl]="nameControl">
                   </mat-form-field>
                   <div *ngFor="let item of products">
                     <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
@@ -50,7 +50,6 @@
                 </mat-select>
               </mat-form-field>
 
-              <a class="size-chart__all" rel-script="view-all-size-chart">Xem tất cả bảng size</a>
               <div class="size-chart__image" rel-script="size-chart-image">
                 <img src="{{image}}">
               </div>
@@ -64,20 +63,20 @@
                   <div class="size-suggestion">
                     <div class="grid">
                       <div class="grid__column six-twelfths mobile--one-whole">
-                        <h3 class="size-chart__title">Thông số cơ thể</h3>
+                        <h3 class="size-chart__title">Thông số bàn chân</h3>
 
                         <!-- <mat-card class="example-result-card"> -->
-                        <div style="padding:2px;padding-top:5px"><span>Chiều cao: </span> <b style="float: right ;"
+                        <div style="padding:2px;padding-top:5px"><span>Độ dài bàn chân: </span> <b style="float: right ;"
                             class="gridSizeValue">{{height.value}} cm</b></div>
 
                         <mat-slider style="width:100% ;" #height (click)="getSize()" (change)="updateHeight($event)"
-                          step="1" min="149" max="195">
+                          step="1" min="25.5" max="29.4">
                         </mat-slider>
 
-                        <div style="padding:2px;padding-top:5px"><span>Cân nặng: </span> <b style="float: right ;"
-                            class="gridSizeValue">{{weight.value}} kg</b></div>
+                        <div style="padding:2px;padding-top:5px"><span>Độ rộng bàn chân: </span> <b style="float: right ;"
+                            class="gridSizeValue">{{weight.value}} cm</b></div>
                         <mat-slider style="width:100% ;" #weight (click)="getSize()" (change)="updateWeight($event)"
-                          step="1" min="41" max="105">
+                          step="1" min="10" max="11">
                         </mat-slider>
                       </div>
 
@@ -101,11 +100,10 @@
                 </form>
               </div>
               <div class="size-chart__description">
-                <h3>Size chart</h3>
+                <h3>Bảng Size</h3>
                 <p>
-                  * Thông số cơ bản của các sản phẩm Flone: Lấy chiếc áo mà các bạn đang<br>
-                  mặc và cảm thấy vừa nhất sau đó đo các kích thước của áo,và đối chiếu với bảng<br> thông số của
-                  chúng tôi theo các kích thước sau:
+                  * Cách để đo được chính xác size của bàn chân mình: Đặt chân lên 1 mặt phẳng(ví dụ tờ giấy) 
+                  rồi gạch bút ở các đầu ngón chân, gót và 2 bên.Từ đó sẽ có được độ dài và rộng của bàn chân
                 </p>
               </div>
               <div id="size-table" class="size-chart__table">
@@ -116,45 +114,45 @@
                         <tr>
                           <td><span>Kích thước<br>(size)</span></td>
                           <td>
-                            <span>Chiều cao<br>(cm)</span>
+                            <span>Chiều dài bàn chân<br>(cm)</span>
 
                           </td>
                           <td>
-                            <span>Cân nặng<br>(kg)</span>
+                            <span>Chiều rộng bàn chân<br>(cm)</span>
 
                           </td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td><span class="text--bold">S</span></td>
-                          <td>149-155</td>
-                          <td>41-49</td>
+                          <td><span class="text--bold">38</span></td>
+                          <td>25.5</td>
+                          <td>10</td>
                         </tr>
                         <tr>
-                          <td><span class="text--bold">M</span></td>
-                          <td>156-160</td>
-                          <td>50-59</td>
+                          <td><span class="text--bold">40</span></td>
+                          <td>26</td>
+                          <td>10.2</td>
                         </tr>
                         <tr>
-                          <td><span class="text--bold">L</span></td>
-                          <td>161-169</td>
-                          <td>60-69</td>
+                          <td><span class="text--bold">41</span></td>
+                          <td>26.9</td>
+                          <td>10.4</td>
                         </tr>
                         <tr>
-                          <td><span class="text--bold">XL</span></td>
-                          <td>170-178</td>
-                          <td>70-79</td>
+                          <td><span class="text--bold">42</span></td>
+                          <td>27.7</td>
+                          <td>10.6</td>
                         </tr>
                         <tr>
-                          <td><span class="text--bold">XXL</span></td>
-                          <td>179-188</td>
-                          <td>80-90</td>
+                          <td><span class="text--bold">43</span></td>
+                          <td>28.5</td>
+                          <td>10.8</td>
                         </tr>
                         <tr>
-                          <td><span class="text--bold">XXXL</span></td>
-                          <td>189-195</td>
-                          <td>91-105</td>
+                          <td><span class="text--bold">44</span></td>
+                          <td>29.4</td>
+                          <td>11</td>
                         </tr>
                       </tbody>
                     </table>
