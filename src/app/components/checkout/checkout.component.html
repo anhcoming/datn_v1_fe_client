@@ -289,8 +289,7 @@
                   >
                   <option value hidden>---</option>
                   <option *ngFor="let s of services" [value]="s.service_id">
-                    <!-- {{s.short_name}} -->
-                    {{db}}
+                    {{s.short_name}}
                   </option>
                 </select>
                 </div>
@@ -354,12 +353,12 @@
                       <div [ngClass]="checkoutForm.value.paymentMethod == 'COD' ? 'content-box__row__desc': 'content-box__row__desc hide'">
                         <p>
                           Khách hàng được kiểm tra hàng trước khi thanh toán
-                          tiền cho bưu tá.
+                          tiền cho shipper !
                         </p>
                       </div>
                     </div>
 
-                    <div class="content-box__row">
+                    <!-- <div class="content-box__row">
                       <div class="radio-wrapper">
                         <div class="radio__input">
                           <input
@@ -390,7 +389,7 @@
                         <p>Số tài khoản: 144405456757</p>
                         <p>Chi nhánh: Hà Nội</p>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="content-box__row">
                       <div class="radio-wrapper">
