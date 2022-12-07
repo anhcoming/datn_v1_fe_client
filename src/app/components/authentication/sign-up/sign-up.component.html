@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="gender">Gender:</label>
     <div class="form-check">
       <input class="form-check-input"formControlName="gender" checked value="true" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
   <div class="mb-4 form-group mt-2">
     <input type="text" class="form-control" formControlName="email" placeholder="Vui lòng nhập Email">
     <div *ngIf="f.email.invalid&&(f.email.dirty||f.email.touched) ">
@@ -78,9 +78,9 @@
     <input type="date" class="form-control" formControlName="dob" placeholder="Vui lòng nhập ngày sinh">
     <div *ngIf="f.dob.invalid&&(f.dob.dirty||f.dob.touched) ">
       <div *ngIf="f.dob.errors">
-        <div *ngIf="f.dob.errors.required" style="1px solid red">
+        <!-- <div *ngIf="f.dob.errors.required" style="solid red">
           <small>Ngày sinh không được để trống</small>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
