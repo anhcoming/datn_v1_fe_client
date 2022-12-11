@@ -17,7 +17,7 @@ export class SignUpComponent implements OnInit {
   userForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    // gender: ['', Validators.required],
+    gender: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     dob: ['', Validators.required],
@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
     let body = {
       firstName: this.userForm.get('firstName')?.value,
       lastName: this.userForm.get('lastName')?.value,
-      // gender: this.userForm.get('gender')?.value,
+      gender: this.userForm.get('gender')?.value,
       email: this.userForm.get('email')?.value,
       phone: this.userForm.get('phone')?.value,
       dob: moment(this.userForm.get('dob')?.value).format('DD/MM/YYYY'),
