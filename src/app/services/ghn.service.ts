@@ -7,8 +7,8 @@ import { District } from '../models/district';
 import { Ward } from '../models/ward';
 
 const GHN_API = environment.ghnApi;
-const token_GHN = '1356329a-0133-11ed-8636-7617f3863de9';
-const shopId_GHN = '3094137';
+const token_GHN = '2b548f2b-56c1-11ed-8a70-52fa25d1292f';
+const shopId_GHN = '3399646';
 const fromDistrictId = 1847;
 const options = {
   headers: {
@@ -24,19 +24,19 @@ export class GhnService {
 
   constructor(private http: HttpClient) { }
 
-  getProvinces(): Observable<Province[]> {
+  getProvinces(): Observable<Province[]> { debugger
     return this.http.get<Province[]>(GHN_API + '/master-data/province', options);
   }
 
-  getDistricts(provinceId:number): Observable<District[]> {
+  getDistricts(provinceId:number): Observable<District[]> { debugger
     return this.http.get<District[]>(GHN_API + '/master-data/district?province_id='+provinceId, options);
   }
 
-  getWards(districtId: number): Observable<Ward[]>{
+  getWards(districtId: number): Observable<Ward[]>{debugger
     return this.http.get<Ward[]>(GHN_API + '/master-data/ward?district_id='+districtId, options);
   }
 
-  getService(toDistrict: number): Observable<any>{
+  getService(toDistrict: number): Observable<any>{debugger
     const params = {
       shop_id : Number(shopId_GHN),
       from_district: 1847,
@@ -47,7 +47,7 @@ export class GhnService {
 
   }
 
-  getShipping(serviceId:number,toDistrict: number, toWardCode: string): Observable<any> {
+  getShipping(serviceId:number,toDistrict: number, toWardCode: string): Observable<any> {debugger
     const optionss = {
       headers: {
         token: token_GHN,
