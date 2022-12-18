@@ -20,27 +20,27 @@
           Hướng dẫn chọn size theo bàn chân
         </h1>
         <div class="size-chart__head">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
+          <span style="background-color: #a839ed;color: white;">1</span>
+          <span style="background-color: #a839ed;color: white;">2</span>
+          <span style="background-color: #a839ed;color: white;">3</span>
         </div>
         <!-- <div class="size-chart__inner"> -->
         <div class="grid">
           <div class="grid__column four-twelfths mobile--one-whole">
             <h3 style="margin-top:0.19rem;margin-bottom: 2.5rem;" class="size-chart__title">Kiểu giày</h3>
-            <div id="size-select-table" style="width: 100%;">
+            <div id="size-select-table" style="width: 100%;" >
 
-              <mat-form-field style="width:100%">
-                <mat-label style="color: #343232;">{{nameProduct}}</mat-label>
+              <mat-form-field style="width:100%;">
+                <mat-label style="color: #a839ed;">{{nameProduct}}</mat-label>
                 <mat-select style="max-height:220px">
                   <mat-form-field style="width:100%;" class="example-full-width" appearance="fill">
-                    <input matInput placeholder="Mời bạn chọn hãng giày..." [formControl]="nameControl">
+                    <input matInput placeholder="Mời bạn chọn hãng giày..." [formControl]="nameControl" >
                   </mat-form-field>
-                  <div *ngFor="let item of products">
+                  <div *ngFor="let item of products" >
                     <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> -->
-                    <mat-option class="option" style="width:100%;height: 120% ;background-color: white;"
+                    <mat-option class="option" style="width:100%;height: 120% ;background-color: rgb(255, 255, 255);"
                       (click)="uploadImage(item)" (click)="getSize()">
-                      <img style="float:left;width:25%" src="{{item.image}}" value="long-shirt">
+                      <img style="float:left;width:25%;" src="{{item.image}}" value="long-shirt" >
                       <p style="width:60%;float: left;margin-top: 2rem;margin-left:2rem">{{item.name}}
                       </p>
                     </mat-option>
@@ -110,16 +110,14 @@
                 <div id="ao-oversize" class="size-cart__item mgb--20">
                   <div class="size-cart__table">
                     <table class="table-sizechart one-whole">
-                      <thead>
-                        <tr>
+                      <thead >
+                        <tr >
                           <td><span>Kích thước<br>(size)</span></td>
                           <td>
                             <span>Chiều dài bàn chân<br>(cm)</span>
-
                           </td>
                           <td>
                             <span>Chiều rộng bàn chân<br>(cm)</span>
-
                           </td>
                         </tr>
                       </thead>
