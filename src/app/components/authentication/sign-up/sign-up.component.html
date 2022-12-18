@@ -1,5 +1,5 @@
 <form [formGroup]="userForm" class="mt-5 container" style="width:30%">
-  <h2 class="pt-3" style="font-family: 'Segoe UI';"><b>Shose Store</b></h2>
+  <h2 class="pt-3" style="font-family: 'Segoe UI';"><b style="color: #900de7;">Shose Store</b></h2>
   <p>Đăng ký để sử dụng dịch vụ...</p>
   <div class="row">
     <div class="mb-2 form-group" style="width:50%;float:left;padding-right:20px ;">
@@ -24,17 +24,21 @@
       </div>
     </div>
   </div>
-
-  <div class="form-group">
-    <label for="gender">Gender:</label>
-    <div class="form-check">
-      <input class="form-check-input"formControlName="gender" checked value="true" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-      <label class="form-check-label" for="flexRadioDefault1">Nam</label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" formControlName="gender" value="false" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-      <label class="form-check-label" for="flexRadioDefault2">Nữ</label>
-    </div>
+  <div >
+  <div >
+    <table>
+      <tbody>
+        <tr>
+          
+          <td><input class="form-check-input" formControlName="gender" checked value="true" type="radio" name="flexRadioDefault2" id="flexRadioDefault2"></td>
+          <td>Nam</td>
+          &nbsp; &nbsp; &nbsp;
+          <td><input class="form-check-input" formControlName="gender" value="false" type="radio" name="flexRadioDefault2" id="flexRadioDefault2"></td>
+          <td>Nữ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
    <div *ngIf="f.gender.invalid&&(f.gender.dirty||f.gender.touched) ">
     <div *ngIf="f.gender.errors">
