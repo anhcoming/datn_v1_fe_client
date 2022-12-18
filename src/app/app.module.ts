@@ -33,6 +33,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
+import { ProductComponent } from './components/shop/product/product.component';
 // import { NgxUiLoaderComponent } from 'ngx-ui-loader';
 
 @NgModule({
@@ -55,6 +56,7 @@ import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.c
     BlogDetailComponent,
     PaymentInfoComponent,
     BlogComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
