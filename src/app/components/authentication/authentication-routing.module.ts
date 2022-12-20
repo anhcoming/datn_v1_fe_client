@@ -9,7 +9,7 @@ import { LoginGuard } from '../../guards/login.guard';
 
 
 const routes: Routes = [
-  { path: 'sign-in', component: SignInComponent, canActivate: [LoginGuard] },
+  { path: 'login', component: SignInComponent, canActivate: [LoginGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [LoginGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },

@@ -36,4 +36,8 @@ export class ProductService {
   getProductBestSeller(): Observable<any> {
     return this.http.get<any>(API + 'product/best-seller');
   }
+
+  getAllProduct(): Observable<any> {
+    return this.http.get<any>(API + '/product/no-page');
+  }
 }

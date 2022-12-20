@@ -136,7 +136,7 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
       return;
     }
 
@@ -237,7 +237,7 @@ export class ProductDetailComponent implements OnInit {
 
   addToFavourite() {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
       return;
     }
 

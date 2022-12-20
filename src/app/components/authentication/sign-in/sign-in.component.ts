@@ -55,7 +55,6 @@ export class SignInComponent implements OnInit {
         this.tokenStorage.saveToken(accessToken);
         this.tokenStorage.saveRefreshToken(refreshToken);
         const decodedToken = this.helper.decodeToken(accessToken);
-        debugger
         console.log('decodedToken : ', decodedToken);
         this.tokenStorage.saveUser(decodedToken);
         this.roles = this.tokenStorage.getUser().role;

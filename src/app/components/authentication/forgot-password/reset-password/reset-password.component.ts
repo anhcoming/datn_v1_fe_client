@@ -60,7 +60,7 @@ export class ResetPasswordComponent implements OnInit {
         } else {
           this.toastr.success('Mời bạn đăng nhập lại');
           this.toastr.success('Cập nhật mật khẩu thành công');
-          this.router.navigate(['/sign-in']);
+          this.router.navigate(['/login']);
         }
       }
     );

@@ -205,7 +205,7 @@ export class ShopComponent implements OnInit {
 
   addToFavourite(id: any) {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['login']);
       return;
     }
 
