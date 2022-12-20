@@ -24,7 +24,7 @@ const AUTH_API = environment.baseUrl;
 export class OrderService {
   constructor(private http: HttpClient) {}
 
-  getListOrder(): Observable<any> {debugger
+  getListOrder(): Observable<any> {
     return this.http.get<any>(AUTH_API + 'order/myOrders', requestOptions);
   }
 

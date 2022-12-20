@@ -1,6 +1,4 @@
-<header
-  class="header-area header-padding-1 sticky-bar header-res-padding clearfix"
->
+<header class="header-area header-padding-1 sticky-bar header-res-padding clearfix">
   <div class="container-fluid">
     <div class="row">
       <div class="col-xl-2 col-lg-2 col-md-6 col-4">
@@ -17,7 +15,7 @@
               <li><a routerLink="/home">TRANG CHỦ</a></li>
 
               <li>
-                <a>SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
+                <a routerLink="shop/giay-the-thao-nam-nike">SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
                 <ul class="mega-menu">
                   <li>
                     <ul>
@@ -53,16 +51,14 @@
         <div class="header-right-wrap">
           <div class="same-style header-search"></div>
           <div class="same-style account-satting header-tool user">
-            <a class="account-satting-active"
-              ><i class="pe-7s-user-female"></i
-            ></a>
+            <a class="account-satting-active"><i class="pe-7s-user-female"></i></a>
             <div *ngIf="!isLoggedIn">
               <ul class="account_header">
                 <li>
                   <a href="/sign-up">Đăng ký</a>
                 </li>
                 <li>
-                  <a href="/sign-in">Đăng nhập</a>
+                  <a href="/login">Đăng nhập</a>
                 </li>
               </ul>
             </div>
@@ -79,7 +75,7 @@
                   <a routerLink="user/change-password">Đổi mật khẩu</a>
                 </li>
                 <li>
-                  <a (click)="logout()">Đăng xuất</a>
+                  <a routerLink="/login" (click)="logout()">Đăng xuất</a>
                 </li>
               </ul>
             </div>
@@ -94,31 +90,18 @@
             <div class="dropdown">
               <div class="col">
                 <div ngbDropdown class="d-inline-block">
-                  <button
-                    type="button"
-                    class="icon-cart"
-                    id="dropdownBasic1"
-                    ngbDropdownToggle
-                  >
+                  <button type="button" class="icon-cart" id="dropdownBasic1" ngbDropdownToggle>
                     <i class="pe-7s-bell"></i>
                     <span class="count-style notification">{{
                       numberNotiUnRead
-                    }}</span>
+                      }}</span>
                   </button>
-                  <div
-                    class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    style="width: 20rem !important; padding: 0 "
-                    ngbDropdownMenu
-                    aria-labelledby="dropdownBasic1"
-                  >
+                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    style="width: 20rem !important; padding: 0 " ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <div class="notification-header">
                       <h3 class="dropdown-header">Thông báo</h3>
                     </div>
-                    <button
-                      ngbDropdownItem
-                      class="dropdown-item d-flex align-items-center bg-light"
-                      href="#"
-                      style="white-space: normal;
+                    <button ngbDropdownItem class="dropdown-item d-flex align-items-center bg-light" href="#" style="white-space: normal;
                       padding-top: 0.5rem;
                       padding-bottom: 0.5rem;
                       border-left: 1px solid #e3e6f0;
@@ -137,10 +120,8 @@
                       border: 0;
                       font-size: 15px;
                       border-bottom: 1px solid #e3e6f0;
-                      "
-                      *ngFor="let noti of notifications"
-                      (click)="readNotificationById(noti.id,noti.objectType,noti.objectTypeId)"
-                    >
+                      " *ngFor="let noti of notifications"
+                      (click)="readNotificationById(noti.id,noti.objectType,noti.objectTypeId)">
                       <div class="mr-3">
                         <div class="icon-circle bg-primary">
                           <i class="fas fa-file-alt text-white"></i>
@@ -150,23 +131,20 @@
                         <div class="small text-gray-500">
                           {{noti?.createdDate}}
                         </div>
-                        <span
-                          style="
+                        <span style="
                             overflow: hidden;
                             text-overflow: ellipsis;
                             display: -webkit-box;
                             -webkit-line-clamp: 2;
                             -webkit-box-orient: vertical;
-                          "
-                          [ngStyle]="{ 'font-weight': noti?.isRead ? 'normal' : 'bold' }"
-                        >
+                          " [ngStyle]="{ 'font-weight': noti?.isRead ? 'normal' : 'bold' }">
                           {{noti?.content}}
                         </span>
                       </div>
                     </button>
                     <div class='p-2 d-flex justify-content-between'>
                       <a class="small text-left" (click)="readAllNotification()">Đánh dấu đã đọc tất cả</a>
-                      <a class="small text-right">Xem thêm...</a>
+                      <!-- <a class="small text-right">Xem thêm...</a> -->
                     </div>
                   </div>
 

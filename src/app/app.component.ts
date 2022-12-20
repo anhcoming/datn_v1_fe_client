@@ -19,7 +19,7 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         this.currentUrl = event.url;
       }
-      if (this.currentUrl == "/sign-in" || this.currentUrl == "/sign-up" ||
+      if (this.currentUrl == "/login" || this.currentUrl == "/sign-up" ||
         this.currentUrl == "/forgot-password"||this.currentUrl.includes("reset-password")
       ) {
         this.check = true

@@ -17,6 +17,7 @@ import { PaymentInfoComponent } from './components/payment-info/payment-info.com
 import { PageNotFoundComponent } from './components/authentication/page-not-found/page-not-found.component';
 import { SignInComponent } from './components/authentication/sign-in/sign-in.component';
 import { BlogDetailComponent } from './components/blog/blog-detail/blog-detail.component';
+import { ProductComponent } from './components/shop/product/product.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full' },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'blog/:id', component: BlogDetailComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
+  { path: 'product-all', component: ProductComponent },
   {
     path: '',
     loadChildren: () =>

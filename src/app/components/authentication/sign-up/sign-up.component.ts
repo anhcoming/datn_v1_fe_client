@@ -52,7 +52,7 @@ export class SignUpComponent implements OnInit {
 
       this.toastr.success('Đăng ký thành công !!');
       this.toastr.success('Mời bạn đăng nhập lại !!');
-      this.router.navigate(['/sign-in']);
+      this.router.navigate(['/login']);
     }, (err) => {
       this.toastr.error(err.error.message)
     });

@@ -28,7 +28,7 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.tokenService.loggedIn()) {
-      if (state.url.includes('sign-in') || state.url.includes('sign-up')) {
+      if (state.url.includes('login') || state.url.includes('sign-up')) {
         console.log('co vao` day hay ko');
         this.router.navigate(['user/profile']);
       }

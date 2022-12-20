@@ -17,12 +17,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private productService: ProductService,
-    private service: BlogService
+    private service: BlogService,
   ) {}
 
   ngOnInit(): void {
     this.getProductBestSeller();
     this.getBlogList();
+    this.getAllProduct();
     this.spinner.show();
     setTimeout(() => {
       this.spinner.hide();
@@ -72,6 +73,17 @@ export class HomeComponent implements OnInit {
   }
   getProductBestSeller() {
     this.productService.getProductBestSeller().subscribe({
+      next: (res: any) => {
+        this.productSeller = res.data;
+        // console.log('productSeller : ', this.productSeller);
+      },
+      error: (err) => {
+        console.log('error : ', err);
+      },
+    });
+  }
+  getAllProduct() {
+    this.productService.getAllProduct().subscribe({
       next: (res: any) => {
         this.productSeller = res.data;
         console.log('productSeller : ', this.productSeller);
