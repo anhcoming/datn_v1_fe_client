@@ -644,7 +644,7 @@
       </main>
       <aside class="sidebar">
         <div class="sidebar__header">
-          <h2 class="sidebar__title">Đơn hàng {{totalItems}} sản phẩm</h2>
+          <h2 class="sidebar__title">Đơn hàng có {{totalItems}} sản phẩm</h2>
         </div>
         <div class="sidebar__content">
           <div
@@ -704,14 +704,14 @@
               </div>
               <div class="order-summary__section order-summary__section--discount-code"
                               data-tg-refresh="refreshDiscount" id="discountCode">
-                              <h3 class="visually-hidden">Mã khuyến mại</h3>
+                              <h3 class="visually-hidden">Mã Voucher</h3>
                               <div class="edit_checkout animate-floating-labels">
                                   <div class="fieldset">
                                       <div class="field">
                                           <div class="field__input-btn-wrapper">
                                               <div class="field__input-wrapper">
                                                   <label for="reductionCode" class="field__label">
-                                                    Nhập mã giảm giá
+                                                    Nhập mã Voucher
                                                   </label>
                                                   <input name="reductionCode" id="reductionCode" formControlName="discountCode" type="text"
                                                       class="field__input" autocomplete="off">
@@ -767,7 +767,7 @@
                     <!-- if totalDiscount > 0 display total discount -->
                     <tr class="total-line total-line--shipping-fee" *ngIf="totalDiscount > 0">
                       <th class="total-line__name">
-                        Giảm giá
+                        Được giảm theo mã Voucher
                       </th>
                       <td class="total-line__price">{{totalDiscount | vnd}}</td>
                     </tr>
@@ -776,7 +776,7 @@
                     <tr class="total-line payment-due">
                       <th class="total-line__name">
                         <span class="payment-due__label-total">
-                          Tổng cộng
+                          Tổng tiền
                         </span>
                       </th>
                       <td class="total-line__price">
