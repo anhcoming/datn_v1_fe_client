@@ -2,7 +2,7 @@ export class ProductDetail {
   productId?: string;
   productName?: string;
   categoryName?: string;
-  material?: string;
+  brand?: string;
   type?: string;
   description?: string;
   countRating?: number;

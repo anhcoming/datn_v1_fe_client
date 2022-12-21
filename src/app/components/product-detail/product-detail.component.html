@@ -39,19 +39,17 @@
             </div>
             <span><a href="#">{{ productDetail?.countRating }} đánh giá </a></span>
           </div>
-          <h4>Đặc điểm sản phẩm</h4>
-          <div *ngFor="let des of description" class="tick-line">
-            <p>{{ des }}</p>
+          <div class="m-0">
+            <h4>Đặc điểm sản phẩm</h4>
+            <div *ngFor="let des of description" class="tick-line">
+              <p>{{ des }}</p>
+            </div>
+            <p>Thương hiệu: {{ productDetail?.brand }}</p>
+            <p>Loại sản phẩm : {{ productDetail?.categoryName }}</p>
+            <a routerLink="/size" rel-script="toggle-size-guide" class="option-heading__sizeguide">
+              Hướng dẫn chọn size
+            </a>
           </div>
-
-          <p>Chất liệu : {{ productDetail?.material }}</p>
-          <br />
-          <p style="margin-bottom: 21px;">Loại sản phẩm : {{ productDetail?.categoryName }}</p>
-
-          <a routerLink="/size" rel-script="toggle-size-guide" class="option-heading__sizeguide">
-            Hướng dẫn chọn size
-          </a>
-
           <div class="single-product product-size d-flex align-items-center mt-4 m-10">
             <div>
               <span class="font-weight-bold text-capitalize product-meta-title">Size:</span>
@@ -77,14 +75,14 @@
           <div class="single-product product-color d-flex align-items-center mt-4">
             <div>
               <span class="font-weight-bold text-capitalize product-meta-title">Color:</span>
-              <div>
+              <div class="row">
                 <div class="form-check col-2 mt-10 ml-20" *ngFor="let color of colors">
-                  <input class="form-check-input" type="radio" [disabled]="color.quantity == 0 ? true : false"
-                    [value]="color.colorId" name="flexRadioDefault" id="color" name="color"
-                    (change)="changeColor($event)">
-                  <label class="form-check-label" for="color">
+                  <input class="form-check-input" type="radio" [ngStyle]="{'background-color':color.hex}"
+                    [disabled]="color.quantity == 0 ? true : false" [value]="color.colorId" name="flexRadioDefault"
+                    id="color" name="color" (change)="changeColor($event)">
+                  <span class="form-check-label" for="color">
                     {{ color.colorName }}
-                  </label>
+                  </span>
                 </div>
               </div>
             </div>
