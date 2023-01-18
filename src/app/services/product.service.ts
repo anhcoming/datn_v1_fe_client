@@ -38,6 +38,6 @@ export class ProductService {
   }
 
   getAllProduct(): Observable<any> {
-    return this.http.get<any>(API + '/product/no-page');
+    return this.http.get<any>(API + 'product/no-page');
   }
 }

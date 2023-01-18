@@ -50,21 +50,21 @@
                                   <div class="product-wrap mb-25 scroll-zoom" data-sr-id="1" style=" visibility: visible;  -webkit-transform: translateY(0) scale(1); opacity: 1;transform: translateY(0) scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; ">
                                       <div class="product-img">
                                         <a [routerLink]="['/product-detail/'+product.id]">
-                                          <img class="default-img" [src]="product.images" alt="">
-                                          <img class="hover-img" [src]="product.images" alt="">
+                                            <img class="default-img" [src]="product.images" alt="">
+                                            <img class="hover-img" [src]="product.images" alt="">
                                         </a>
                                           <!-- <span class="pink">-10%</span> -->
                                           <div class="product-action">
-                                              <div class="pro-same-action pro-wishlist">
-                                                  <a (click)="addToFavourite(product.id)" title="Wishlist"><i class="pe-7s-like"></i></a>
-                                              </div>
-                                              <div class="pro-same-action pro-cart">
-                                                  <a title="Add To Cart" [routerLink]="['/product-detail/'+product.id]"><i class="pe-7s-cart"></i></a>
-                                              </div>
-                                              <div class="pro-same-action pro-quickview">
-                                                  <a title="Quick View" [routerLink]="['/product-detail/'+product.id]" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></a>
-                                              </div>
-                                          </div>
+                                            <div class="pro-same-action pro-wishlist">
+                                                <a (click)="addToFavourite(product.id)" title="Wishlist"><i class="pe-7s-like"></i></a>
+                                            </div>
+                                            <div class="pro-same-action pro-cart">
+                                                <a title="Add To Cart" [routerLink]="['/product-detail/'+product.id]"><i class="pe-7s-cart"></i></a>
+                                            </div>
+                                            <div class="pro-same-action pro-quickview">
+                                                <a title="Quick View" [routerLink]="['/product-detail/'+product.id]" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></a>
+                                            </div>
+                                        </div>
                                       </div>
                                       <div class="product-content text-center">
                                           <h3><a [routerLink]="['/product-detail/'+product.id]">{{product.name}}</a></h3>
