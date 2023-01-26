@@ -103,6 +103,11 @@ export class ShopComponent implements OnInit {
       },
     });
   }
+  saveProduct(e:any){
+    // debugger
+    localStorage.setItem("PRICE",JSON.stringify({min:e.minPrice,max:e.maxPrice}))
+console.log(e)
+  }
 
   getListProduct(req: any) {
     this.productService.getListProduct(req).subscribe({
