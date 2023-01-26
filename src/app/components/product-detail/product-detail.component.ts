@@ -32,7 +32,10 @@ export class ProductDetailComponent implements OnInit {
   sizeSelected: string = '';
   colorSelected: string = '';
   productOptionId: string = '';
-  priceOption!: number;
+  priceOption!: {
+    minPrice:any,
+    maxPrice:any
+  };
   productOptionRes!: ProductOptionIdRes;
   description: string[] = [];
   sizeColorSelected!: boolean;
@@ -110,7 +113,11 @@ export class ProductDetailComponent implements OnInit {
         this.productOptions = response.data.productOptions;
         console.log('product-detail:', this.productDetail);
         console.log('productOptions:', this.productOptions);
-        this.priceOption = response.data.productOptions[0].price;
+        // this.priceOption = response.data.productOptions[0].price;
+       let data = JSON.parse(localStorage.getItem("PRICE")||"")
+      //  debugger
+      this.priceOption = data.min == data.max?data.min:data.min +"₫ - "+data.max
+console.log("MINMAX",data);
 
         this.imageProduct = response.data.productOptions.map((item: any) => {
           return {
@@ -228,7 +235,7 @@ export class ProductDetailComponent implements OnInit {
           console.log('findProductOptionRes: ', response);
           this.quantityProduct = response.data.quantity;
           this.priceProduct = response.data.price;
-          this.priceOption = response.data.price
+          this.priceOption = response.data.price 
           console.log('priceProduct: ', this.priceProduct);
           console.log('quantityProduct: ', this.quantityProduct);
         },
