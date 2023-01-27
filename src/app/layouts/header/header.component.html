@@ -12,28 +12,32 @@
         <div class="main-menu">
           <nav>
             <ul>
-              <li><a routerLink="/home">TRANG CHỦ</a></li>
-
+              <li><a href="index.html">TRANG CHỦ</a></li>
               <li>
-                <a routerLink="shop/giay-the-thao-nam-nike">SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
+                <a routerLink="shop/a">SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
                 <ul class="mega-menu">
                   <li>
-                    <ul>
-                      <li class="mega-menu-title"><a>Nam</a></li>
-                      <li><a routerLink="shop/giay-the-thao-nam-nike">Giày Nike</a></li>
-                      <li><a routerLink="shop/giay-bong-ro">Giày Bóng Rổ</a></li>
-                      <li>
-                        <a routerLink="shop/giay-the-thao-nam-nu-jordan">Giày Jordan</a>
-                      </li>
-                      <li><a routerLink="shop/giay-converse">Giày Converse</a></li>
-                      <li><a routerLink="shop/giay-mlb">Giày MLB</a></li>
-                      <li><a routerLink="shop/giay-adidas">Giày Adidas</a></li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/nam" ><b>Nam</b> </a></li>
+                      </ul>
+                    <ul *ngFor="let item of nam">
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
+                    </ul>
+                  <li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/nu" > <b>Nữ</b> </a></li>
+                    </ul>
+                    <ul *ngFor="let item of nu">
+                     
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
                     </ul>
                   </li>
                   <li>
-                    <ul>
-                      <li class="mega-menu-title"><a>Nữ</a></li>
-                      <li><a routerLink="shop/giay-theo-thao-nam-nu-jordan">Giày Nike Nữ</a></li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/unisex" > <b>Unisex</b>  </a></li>
+                    </ul>
+                    <ul *ngFor="let item of unisex">
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
                     </ul>
                   </li>
                 </ul>

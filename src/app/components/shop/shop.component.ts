@@ -108,7 +108,6 @@ export class ShopComponent implements OnInit {
     this.productService.getListProduct(req).subscribe({
       next: (response: any) => {
         this.listProduct = response.data;
-
         this.page = response.page;
         this.pageSize = response.pageSize;
         this.totalPages = response.totalPages;

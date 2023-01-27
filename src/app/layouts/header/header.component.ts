@@ -4,6 +4,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter, interval, Subscription, timer } from 'rxjs';
 import { CartItem } from 'src/app/models/CartItem';
 import { CartService } from 'src/app/services/cart.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { ProductService } from 'src/app/services/product.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import { UserService } from '../../services/user.service';
 import { Notification } from './../../models/notification';
@@ -16,7 +18,11 @@ import { Notification } from './../../models/notification';
 export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
   public cartItem!: CartItem;
-
+  slug:any;
+  data:any
+  nam:any=[];
+  nu:any=[];
+  unisex: any=[];
   notifications: Notification[] = [];
   numberNotiUnRead: number = 0;
   subscription!: Subscription;
@@ -26,7 +32,9 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenStorageService,
     private cartService: CartService,
     private dialog: MatDialog,
-    private userService: UserService
+    private userService: UserService,
+    private productService: ProductService,
+    private categoryService: CategoryService
   ) {
     this.router.events
       .pipe(filter((e) => e instanceof NavigationEnd))
@@ -35,11 +43,35 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+
+
+
+
   ngOnInit(): void {
     const obs$ = interval(10000);
     this.subscription = obs$.subscribe((x) => {
       this.getTop3Notification();
     });
+    this.getAllCategory();
+  }
+
+
+  getAllCategory(){
+    this.categoryService.getAllCategoryNoPage().subscribe((res)=>{
+     console.log("ở đây",res)
+     this.slug = res
+      for(let i =0;i<17;i++){
+        if(this.slug[i].slug.includes('nam')){
+          this.nam.push({name:this.slug[i].name,slug:this.slug[i].slug})
+        }else if(this.slug[i].slug.includes('nu')){
+          this.nu.push({name:this.slug[i].name,slug:this.slug[i].slug})
+        } else {
+          this.unisex.push({name:this.slug[i].name,slug:this.slug[i].slug})
+
+        }
+      }
+      console.log("Nam",this.nam)
+    })
   }
 
   ngOnDestroy() {
@@ -75,6 +107,11 @@ export class HeaderComponent implements OnInit {
   info() {
     this.router.navigateByUrl('/account');
   }
+
+
+
+
+  
 
   getTop3Notification() {
     //when call api getTop3Notification , noLoading request
