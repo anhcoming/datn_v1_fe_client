@@ -49,7 +49,7 @@ export class CartService {
     return this.http.get(AUTH_API + 'cart/listCart', requestOptions);
   }
 
-  updateCart(productOptionId: string, quantity: number){
+  updateCart(productOptionId: string, quantity: any){
     return this.http.post(AUTH_API + 'cart/update-cart', {productOptionId,quantity}, requestOptions);
   }
 

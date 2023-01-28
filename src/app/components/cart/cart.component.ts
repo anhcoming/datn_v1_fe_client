@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class CartComponent implements OnInit {
   public cart!: Cart[];
+  cartV2: any
   totalPrice!: string;
   quantity!: any;
   public address: Address[] = [];
@@ -23,11 +24,12 @@ export class CartComponent implements OnInit {
     private toastr: ToastrService,
     private addressService: AddressService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.getAllCart();
+    this.getAllCartV2();
     this.getListAddress();
+   
   }
 
   getAllCart() {
@@ -35,8 +37,60 @@ export class CartComponent implements OnInit {
       next: (response: any) => {
         console.log('res :', response);
         this.cart = response.data.carts;
+        debugger
+        this.cartV2 = response.data.carts
         this.totalPrice = response.data.totalPrice;
         console.log('cart : ', this.cart);
+      },
+      error: (err) => {
+        console.log('error: ', err);
+      },
+    });
+  }
+
+  getAllCartV2() {
+    this.cartService.getListCart().subscribe({
+      next: (response: any) => {
+        console.log('res :', response);
+        this.cart = response.data.carts;
+        debugger
+        this.cartV2 = response.data.carts
+        this.totalPrice = response.data.totalPrice;
+        console.log('cart : ', this.cart);
+        let quantity = localStorage.getItem('QUANTITY')
+        let productOptionId = localStorage.getItem('PRODUCTOPTIONID')
+        for (let i = 0; i < this.cartV2.length; i++) {
+          debugger
+          console.log("cartv2", this.cartV2);
+          console.log(Number(quantity), Number(this.cartV2[i].quantityAvailable))
+          let totalCurrent =  Number(this.cartV2[i].quantity)
+          if (this.cartV2[i].productOptionId == productOptionId) {
+            console.log("Tổng", totalCurrent);
+            if (totalCurrent > this.cartV2[i].quantityAvailable) {
+              this.toastr.error(
+                'Số lượng sản phẩm không được lớn hơn ' + this.cartV2[i].quantityAvailable
+              );
+              this.cart[i].quantity = this.cart[i].quantityAvailable
+              this.cartService
+                .updateCart(this.cartV2[i].productOptionId,  this.cart[i].quantityAvailable)
+                .subscribe({
+                  next: () => {
+                    // this.getAllCart();
+                  },
+                });
+            }
+          }else{
+            this.cart[i].quantity = this.cart[i].quantity 
+              this.cartService
+                .updateCart(this.cartV2[i].productOptionId, this.cart[i].quantity )
+                .subscribe({
+                  next: () => {
+                    // this.getAllCart();
+                  },
+                });
+          }
+        }
+        console.log(quantity, productOptionId)
       },
       error: (err) => {
         console.log('error: ', err);

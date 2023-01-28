@@ -59,7 +59,7 @@
                                                 <a (click)="addToFavourite(product.id)" title="Wishlist"><i class="pe-7s-like"></i></a>
                                             </div>
                                             <div class="pro-same-action pro-cart">
-                                                <a title="Add To Cart" [routerLink]="['/product-detail/'+product.id]"><i class="pe-7s-cart"></i></a>
+                                                <a title="Add To Cart" (click)="saveProduct(product)" [routerLink]="['/product-detail/'+product.id]"><i class="pe-7s-cart"></i></a>
                                             </div>
                                             <div class="pro-same-action pro-quickview">
                                                 <a title="Quick View" [routerLink]="['/product-detail/'+product.id]" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></a>
@@ -69,7 +69,8 @@
                                     <div class="product-content text-center">
                                         <h3><a [routerLink]="['/product-detail/'+product.id]">{{product.name}}</a></h3>
                                         <div class="product-price">
-                                          <span style="color: #ee4d2d;">{{product.maxPrice | vnd }}</span>
+                                          <span *ngIf="product.maxPrice==product.minPrice" style="color: #ee4d2d;">{{product.maxPrice|vnd}}</span>
+                                          <span *ngIf="product.maxPrice!==product.minPrice" style="color: #ee4d2d;">{{product.minPrice+" - "+product.maxPrice |vnd}}</span>
                                             <!-- <span class="old">$ 60.00</span> -->
                                         </div>
                                     </div>
