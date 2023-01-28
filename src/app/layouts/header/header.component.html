@@ -12,33 +12,32 @@
         <div class="main-menu">
           <nav>
             <ul>
-              <li><a routerLink="/home">TRANG CHỦ</a></li>
-
+              <li><a href="index.html">TRANG CHỦ</a></li>
               <li>
-                <a routerLink="shop/giay_nike-nam">SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
+                <a routerLink="shop/a">SẢN PHẨM<i class="fa fa-angle-down"></i> </a>
                 <ul class="mega-menu">
                   <li>
-                    <ul>
-                      <li><a routerLink="shop/giay_nike-nam">Giày Nike</a></li>
-                      <li><a routerLink="shop/giay_jordan-nu">Giày Jordan</a></li>
-                      <li>
-                        <a routerLink="shop/giay_mlb-nam">Giày MLB</a>
-                      </li>
-                      <li><a routerLink="shop/giay-converse">Giày Converse</a></li>
-                      <li><a routerLink="shop/giay_adidas-nam">Giày Adidas</a></li>
-                      <li><a routerLink="shop/giay_dsquared2-unisex">Giày DSquared</a></li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/nam" ><b>Nam</b> </a></li>
+                      </ul>
+                    <ul *ngFor="let item of nam">
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
+                    </ul>
+                  <li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/nu" > <b>Nữ</b> </a></li>
+                    </ul>
+                    <ul *ngFor="let item of nu">
+                     
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
                     </ul>
                   </li>
                   <li>
-                    <ul>
-                      <li><a routerLink="shop/giay_vans-nu">Giày Vans</a></li>
-                      <li><a routerLink="shop/giay_louis_vuitton-nu">Giày LouisVuitton</a></li>
-                      <li>
-                        <a routerLink="shop/giay_new_balance-nu">Giày NewBalance</a>
-                      </li>
-                      <li><a routerLink="shop/giay_gucci-nu">Giày Gucci</a></li>
-                      <li><a routerLink="shop/giay_burberry-nu">Giày BurBerry</a></li>
-                      <li><a routerLink="shop/giay-adidas">Giày Adidas</a></li>
+                    <ul class="mega-menu-title">
+                      <li><a a routerLink="shop/unisex" > <b>Unisex</b>  </a></li>
+                    </ul>
+                    <ul *ngFor="let item of unisex">
+                      <li><a routerLink="shop/{{item.slug}}">{{item.name}}</a></li> 
                     </ul>
                   </li>
                 </ul>
