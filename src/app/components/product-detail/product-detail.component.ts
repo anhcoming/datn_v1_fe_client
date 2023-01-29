@@ -188,6 +188,7 @@ console.log("MINMAX",data);
               },
               error: (err) => {
                 console.log('err add to cart : ', err);
+               this.toastr.error(err.error.message)
               },
             });
         },
