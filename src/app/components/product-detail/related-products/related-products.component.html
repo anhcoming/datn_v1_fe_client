@@ -10,8 +10,8 @@
     style="width: 270.3px; margin-right: 30px"
   >
     <div class="product-wrap">
-      <div class="product-img">
-        <a [routerLink]="['/product-detail/' + pdr.productId]">
+      <div class="product-img" (click)="saveProduct(pdr)">
+        <a (click)="saveProduct(pdr)" [routerLink]="['/product-detail/' + pdr.productId]">
           <img class="default-img" [src]="pdr?.image" alt="Hihi" />
         </a>
         <div class="product-action">
@@ -19,14 +19,14 @@
             <a title="Wishlist"><i class="pe-7s-like"></i></a>
           </div>
           <div class="pro-same-action pro-cart">
-            <a
+            <a  (click)="saveProduct(pdr)"
               title="Add To Cart"
               [routerLink]="['/product-detail/' + pdr.productId]"
-              ><i class="pe-7s-cart"></i
+              ><i class="pe-7s-cart"  (click)="saveProduct(pdr)"></i
             ></a>
           </div>
-          <div class="pro-same-action pro-quickview">
-            <a
+          <div (click)="saveProduct(pdr)" class="pro-same-action pro-quickview">
+            <a (click)="saveProduct(pdr)"
               title="Quick View"
               [routerLink]="['/product-detail/' + pdr.productId]"
               data-toggle="modal"
@@ -38,7 +38,7 @@
       </div>
       <div class="product-content text-center">
         <h3>
-          <a [routerLink]="['/product-detail/' + pdr.productId]">{{
+          <a  (click)="saveProduct(pdr)" [routerLink]="['/product-detail/' + pdr.productId]">{{
             pdr?.productName
           }}</a>
         </h3>

@@ -35,6 +35,11 @@ export class HomeComponent implements OnInit {
     { id: 2, img: '../../assets/img/slider/single-slide-hm1-2.png' },
   ];
 
+  saveProduct(e:any){
+    // debugger
+    localStorage.setItem("PRICE",JSON.stringify(e.price))
+console.log(e)
+  }
   bannerSlider: OwlOptions = {
     loop: true,
     mouseDrag: true,
