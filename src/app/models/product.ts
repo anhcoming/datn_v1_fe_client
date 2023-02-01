@@ -5,7 +5,7 @@ export class Product {
   maxPrice? : string;
   sizes? : [];
   colors?: [];
-  images?: [];
+  images!: any;
   categoryName? : string;
   materialName? : string;
   des? : string;

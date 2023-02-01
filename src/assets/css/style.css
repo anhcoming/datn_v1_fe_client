@@ -10032,7 +10032,6 @@ a.default-btn {
 /*-------- 8. Footer style  -----*/
 .copyright .footer-logo {
   margin-bottom: 12px;
-  margin-top: 41px;
 }
 @media only screen and (max-width: 767px) {
   .copyright .footer-logo {
