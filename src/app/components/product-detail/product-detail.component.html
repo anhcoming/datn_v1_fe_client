@@ -96,8 +96,11 @@
           </div>
 
           <div *ngIf="sizeColorSelected">
-            <p style="margin-top: 30px; color: red">
+            <p *ngIf="quantityProduct>0" style="margin-top: 30px; color: red">
               {{ quantityProduct }} sản phẩm có sẵn
+             </p>
+            <p *ngIf="quantityProduct==0" style="margin-top: 30px; color: red">
+             Hết hàng
             </p>
           </div>
 

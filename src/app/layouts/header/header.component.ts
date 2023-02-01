@@ -61,12 +61,12 @@ export class HeaderComponent implements OnInit {
      console.log("ở đây",res)
      this.slug = res
       for(let i =0;i<17;i++){
-        if(this.slug[i].slug.includes('nam')){
-          this.nam.push({name:this.slug[i].name,slug:this.slug[i].slug})
-        }else if(this.slug[i].slug.includes('nu')){
-          this.nu.push({name:this.slug[i].name,slug:this.slug[i].slug})
-        } else {
-          this.unisex.push({name:this.slug[i].name,slug:this.slug[i].slug})
+        if(this.slug[i].slug.includes('-nam')){
+          this.nam.push({name:this.slug[i].name.replace('NAM',''),slug:this.slug[i].slug})
+        }else if(this.slug[i].slug.includes('-nu')){
+          this.nu.push({name:this.slug[i].name.replace('NỮ',''),slug:this.slug[i].slug})
+        } else if(this.slug[i].slug.includes('-unisex')) {
+          this.unisex.push({name:this.slug[i].name.replace('UNISEX',''),slug:this.slug[i].slug})
 
         }
       }

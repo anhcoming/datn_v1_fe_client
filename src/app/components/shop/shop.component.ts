@@ -184,7 +184,7 @@ console.log(e)
 
   //filter price with priceMin and priceMax
   priceFilter() {
-    if (this.minPrice >= this.maxPrice) {
+    if (Number(this.minPrice) >= Number(this.maxPrice)) {
       alert('min price must be less than max price');
       return;
     }

@@ -1,21 +1,21 @@
 
-<h1 class="title-head margin-top-0" style="margin: 20px;color: #fcaf17;">
+<h3>
   Đơn hàng của tôi
-  <span style="float :right;">{{numberOrder}} đơn hàng</span>
-</h1>
-
-<div class="abc">
-  <div class='form-group'>
-    <input type="text" value="" class='form-control' id="myInput" (change)="search($event)" name='str' placeholder ="Tìm kiếm theo mã đơn hàng">
+  <span style="float :right">{{numberOrder}} đơn hàng</span>
+</h3>
+<hr>
+<div class=" row col-12">
+  <div class=' col-9'>
+    <input type="text" value="" style="font-size: 15px; height: 40px;" class='form-control' id="myInput" (change)="search($event)" name='str' placeholder ="Tìm kiếm theo mã đơn hàng">
   </div>
-  <div class='form-group' style="margin-bottom: 25px;">
-    <select class="form-select" (change)="changeStatus($event)">
-      <option value="">Tất cả</option>
-      <option *ngFor="let s of status" [value]="s.statusId">{{s.statusName}}</option>
+  <div class=' col-3' style="font-size: 15px;">
+    <select  style=" height: 40px;font-size: 15px" class="form-select" (change)="changeStatus($event)">
+      <option value=""><p   style="font-size: 15px;">Tất cả</p></option>
+      <option style="font-size: 15px;" *ngFor="let s of status" [value]="s.statusId">{{s.statusName}}</option>
     </select>
   </div>
 </div>
-
+<br>
 
 <div class="col-xs-12 col-sm-12 col-lg-12 no-padding">
   <div class="my-account" *ngIf="orders.length > 0">
@@ -25,15 +25,16 @@
           class="table-responsive-block tab-all"
           style="-ms-overflow-x: auto"
         >
-          <table class="table table-cart table-order" id="my-orders-table">
-            <thead class="thead-default">
+          <table class="table table-bordered "id="my-orders-table">
+            <thead class="thead">
               <tr>
                 <th>Mã đơn hàng</th>
                 <th>Ngày mua</th>
                 <th>Địa chỉ</th>
-                <th>Giá trị<br />đơn hàng</th>
-                <th>Trạng thái thanh toán</th>
-                <th>Trạng thái đơn hàng</th>
+                <th>Tổng tiền</th>
+                <th>Thanh toán</th>
+                <th>Trạng thái </th>
+                <th>Tùy chọn</th>
               </tr>
             </thead>
 
@@ -62,7 +63,7 @@
                 <td>
                   <span class="span_" [ngStyle]="{'color': order.status === 'CANCEL' ? 'red' : ''}">{{order?.statusValue}}</span>
                 </td>
-                <td *ngIf="order.status == 'PENDING'" style="border: initial;">
+                <td *ngIf="order.status == 'PENDING'">
                   <button
                     data-bs-toggle="modal" data-bs-target="#exampleModal"
                     class="btn btn-danger"

@@ -33,8 +33,8 @@ export class ProductDetailComponent implements OnInit {
   colorSelected: string = '';
   productOptionId: string = '';
   priceOption!: {
-    minPrice:any,
-    maxPrice:any
+    minPrice: any,
+    maxPrice: any
   };
   productOptionRes!: ProductOptionIdRes;
   description: string[] = [];
@@ -93,7 +93,7 @@ export class ProductDetailComponent implements OnInit {
     private favourite: FavouriteService,
     private toastr: ToastrService,
     private ratingService: RatingService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.id = this.activeRoute.snapshot.params['id'];
@@ -114,10 +114,15 @@ export class ProductDetailComponent implements OnInit {
         console.log('product-detail:', this.productDetail);
         console.log('productOptions:', this.productOptions);
         // this.priceOption = response.data.productOptions[0].price;
-       let data = JSON.parse(localStorage.getItem("PRICE")||"")
-      //  debugger
-      this.priceOption = data.min == data.max?data.min:data.min +"₫ - "+data.max
-console.log("MINMAX",data);
+        let data = JSON.parse(localStorage.getItem("PRICE") || "")
+        //  debugger
+        if (data.min) {
+          this.priceOption = data.min == data.max ? data.min : data.min + "₫ - " + data.max
+        }else{
+          this.priceOption = data
+        }
+
+        console.log("MINMAX", data);
 
         this.imageProduct = response.data.productOptions.map((item: any) => {
           return {
@@ -141,7 +146,7 @@ console.log("MINMAX",data);
     });
   }
 
-  addToCart() { 
+  addToCart() {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['login']);
       return;
@@ -168,8 +173,8 @@ console.log("MINMAX",data);
           console.log('findProductOptionRes: ', response);
           this.productOptionRes = response.data;
           this.quantityProduct = response.data.quantity;
-          localStorage.setItem('QUANTITY',this.quantity.toString())
-          localStorage.setItem('PRODUCTOPTIONID',this.productOptionRes.productOptionId.toString())
+          localStorage.setItem('QUANTITY', this.quantity.toString())
+          localStorage.setItem('PRODUCTOPTIONID', this.productOptionRes.productOptionId.toString())
           console.log('productOptionRes: ', this.productOptionRes);
           this.cart
             .addToCart(this.productOptionRes.productOptionId, this.quantity)
@@ -188,6 +193,7 @@ console.log("MINMAX",data);
               },
               error: (err) => {
                 console.log('err add to cart : ', err);
+                this.toastr.error(err.error.message)
               },
             });
         },
@@ -235,7 +241,7 @@ console.log("MINMAX",data);
           console.log('findProductOptionRes: ', response);
           this.quantityProduct = response.data.quantity;
           this.priceProduct = response.data.price;
-          this.priceOption = response.data.price 
+          this.priceOption = response.data.price
           console.log('priceProduct: ', this.priceProduct);
           console.log('quantityProduct: ', this.quantityProduct);
         },

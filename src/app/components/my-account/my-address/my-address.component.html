@@ -1,14 +1,17 @@
-<h1 class="title-head" style="margin: 20px; color: #fcaf17">
+<div><h3>
   Địa chỉ của bạn
   <button
     data-bs-toggle="modal" data-bs-target="#exampleModal"
-    class="btn-edit-addr btn btn-primarys btn-more"
+   
     type="button"
-    style="margin: -14px"
+    style="float: right;font-size: 18px;margin-bottom: 5px; color: #ffffff;background-color: #fd7e14;"
   >
     + Thêm địa chỉ mới
   </button>
-</h1>
+</h3>
+
+</div>
+<div></div>
 <hr />
 <div class="total_address">
   <div
@@ -77,7 +80,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="font-size:25px;">Thêm địa chỉ mới</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;color: black;">Thêm địa chỉ mới</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
       </div>
       <div class="modal-body">
@@ -174,17 +177,9 @@
                   </div>
                 </div>
               </div>
-
-              <!-- <div class="checkbox col-6">
-                <label class="c-input c-checkbox" style="padding-left: 26px;">
-                  <input type="checkbox" value="true" style="margin-left:11px;">
-                  <span class="c-indicator">Đặt là địa chỉ mặc định?</span>
-                </label>
-              </div> -->
-
-              <div class="modal-footer">
+             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="margin-right:20px;" (click)="resetForm()">Hủy</button>
-                <button type="submit" class="btn btn-success" data-bs-dismiss="modal" (click)="saveOrUpdateAddress()">Lưu</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveOrUpdateAddress()">Lưu</button>
               </div>
             </form>
       </div>

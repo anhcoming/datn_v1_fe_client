@@ -19,6 +19,11 @@ export class RelatedProductsComponent implements OnInit {
     this.id = this.activeRoute.snapshot.params['id'];
   }
 
+  saveProduct(e:any){
+    // debugger
+    localStorage.setItem("PRICE",JSON.stringify(e.price))
+    console.log(e)
+  }
   slideConfig = {
     infinite: true,
     speed: 300,

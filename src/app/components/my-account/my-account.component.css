@@ -20,43 +20,18 @@
 	margin-left: -10px;
 }
 .container {
-	width: 100%;
+	max-width: 120px;
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
 }
-/* @media all and (min-width:576px) */
-.container {
-	max-width: 540px;
-}
-/* @media all and (min-width:768px) */
-.container {
-	max-width: 720px;
-}
-/* @media all and (min-width:992px) */
-.container {
-	max-width: 960px;
-}
-/* @media all and (min-width:1200px) */
-.container {
-	max-width: 1140px;
-}
-.container, .container-fluid {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-/* @media all and (min-width:1600px) */
-.container {
-	max-width: 1820px;
-}
-/* @media all and (max-width:1600px) and (min-width:1366px) */
-.container {
-	max-width: 1520px;
-}
+
+
 /* @media all and (min-width:1600px) */
 .page_customer_account .container, .page_order .container, .page_address .container, .page_iwish .container, .page_viewed .container {
-	max-width: 1400px;
+	max-width: 1900px;
+	padding-left: 60px;
 }
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
 	display: block;
@@ -235,41 +210,6 @@ p {
 	background: #f8f8f8;
 }
 
-.container {
-	width: 100%;
-	padding-right: 15px;
-	padding-left: 15px;
-	margin-right: auto;
-	margin-left: auto;
-}
-/* @media all and (min-width:576px) */
-.container {
-	max-width: 540px;
-}
-/* @media all and (min-width:768px) */
-.container {
-	max-width: 720px;
-}
-/* @media all and (min-width:992px) */
-.container {
-	max-width: 960px;
-}
-/* @media all and (min-width:1200px) */
-.container {
-	max-width: 1140px;
-}
-.container, .container-fluid {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-/* @media all and (min-width:1600px) */
-.container {
-	max-width: 1820px;
-}
-/* @media all and (max-width:1600px) and (min-width:1366px) */
-.container {
-	max-width: 1520px;
-}
 .row {
 	display: -webkit-box;
 	display: -ms-flexbox;

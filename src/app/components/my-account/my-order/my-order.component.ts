@@ -28,15 +28,15 @@ export class MyOrderComponent implements OnInit {
       statusName: 'Chờ xác nhận',
     },
     {
-      statusId: 'CANCEL',
+      statusId: 'CANCELED',
       statusName: 'Đã hủy',
     },
     {
-      statusId: 'REJECT',
+      statusId: 'REJECTED',
       statusName: 'Bị từ chối',
     },
     {
-      statusId: 'ACCEPT',
+      statusId: 'ACCEPTED',
       statusName: 'Được chấp nhận',
     },
     {

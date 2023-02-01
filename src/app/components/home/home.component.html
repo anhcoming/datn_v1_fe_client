@@ -116,7 +116,7 @@
             <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6" *ngFor="let product of productSeller">
               <div class="product-wrap mb-25">
                 <div class="product-img">
-                  <a [routerLink]="['/product-detail/' + product.productId]">
+                  <a (click)="saveProduct(product)" [routerLink]="['/product-detail/' + product.productId]">
                     <img class="default-img" [src]="product.image" alt="" />
                   </a>
                   <!-- <span class="pink">-10%</span> -->
@@ -125,7 +125,7 @@
                       <a title="Wishlist"><i class="pe-7s-like"></i></a>
                     </div>
                     <div class="pro-same-action pro-cart">
-                      <a title="Add To Cart" [routerLink]="['/product-detail/' + product.productId]"><i
+                      <a (click)="saveProduct(product)" title="Add To Cart" [routerLink]="['/product-detail/' + product.productId]"><i
                           class="pe-7s-cart"></i></a>
                     </div>
                     <div class="pro-same-action pro-quickview">

@@ -117,7 +117,9 @@ export class CartComponent implements OnInit {
       .subscribe({
         next: () => {
           this.getAllCart();
-        },
+        },error:()=>{
+          this.toastr.error('Vượt quá số lượng hiện có')
+        }
       });
   }
 
@@ -198,7 +200,7 @@ export class CartComponent implements OnInit {
   }
 
   //redirect to checkout page
-  checkout() {
+  checkout() {  
     if (this.address.length == 0) {
       //Notify with Sweetalert2
       Swal.fire({
@@ -214,5 +216,6 @@ export class CartComponent implements OnInit {
     } else {
       this.router.navigate(['/checkout']);
     }
+
   }
 }
