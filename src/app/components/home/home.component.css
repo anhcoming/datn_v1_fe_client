@@ -6,3 +6,70 @@
 .slick-prev:before, .slick-next:before {
   color: black!important;
 }
+.products-preview{
+  position: fixed;
+  top: 0; left: 0;
+  min-height: 100vh;
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.products-preview .preview{
+  display: none;
+  padding: 2rem;
+  text-align: center;
+  background: rgb(245, 232, 241);
+  position: relative;
+  margin: 2rem;
+  width: 40rem;
+}
+.products-preview .preview.active{
+  display: inline-block;
+}
+.products-preview .preview img{
+  height: 30rem;
+}
+.products-preview .preview .fa-times{
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  cursor: pointer;
+  color: #444;
+  font-size: 4rem;
+}
+.products-preview .preview .fa-times:hover{
+  transform: rotate(90deg);
+}
+.products-preview .preview h3{
+  color: #444;
+  padding: .5rem 0;
+}
+.products-preview .preview .product-price{
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  color: #27ae60;
+}
+.products-preview .preview .buttons{
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.products-preview .preview .buttons a{
+  flex: 1 1 1rem;
+  padding: 1rem;
+  border: .1rem solid #444;
+  font-size: 1.5rem;
+}
+.products-preview .preview .buttons a.cart{
+  background: rgb(77, 49, 74);
+  color: #fff;
+}
+.products-preview .preview .buttons a.cart:hover{
+  background: #111;
+}
+.products-preview .preview .buttons a.buy:hover{
+  background: #444;
+  color: #fff;
+}

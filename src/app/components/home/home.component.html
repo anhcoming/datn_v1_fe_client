@@ -128,8 +128,14 @@
                       <a title="Add To Cart" [routerLink]="['/product-detail/' + product.productId]"><i
                           class="pe-7s-cart"></i></a>
                     </div>
-                    <div class="pro-same-action pro-quickview">
+                    <!-- <div class="pro-same-action pro-quickview">
                       <a title="Quick View" [routerLink]="['/product-detail/' + product.productId]" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <i class="pe-7s-look"></i>
+                      </a>
+                    </div> -->
+                    <div class="pro-same-action pro-quickview">
+                      <a title="Quick View"  data-bs-toggle="modal"
                         data-bs-target="#exampleModal">
                         <i class="pe-7s-look"></i>
                       </a>
@@ -141,6 +147,22 @@
                   <div class="product-price">
                     <span style="color:red">{{product.price | vnd}}</span>
                     <!-- <span class="old">$ 60.00</span> -->
+                  </div>
+                </div>
+              </div>
+              <div class="products-preview">
+                <div class="preview" data-target="1">
+                  <i class="fas fa-times"></i>
+                  <a [routerLink]="['/product-detail/' + product.productId]">
+                    <img class="default-img" [src]="product.image" alt="" />
+                  </a>
+                  <h3><a [routerLink]="['/product-detail/' + product.productId]">{{product.name}}</a></h3>
+                  <div class="product-price">
+                    <span >Giá tiền: {{product.price | vnd}}</span>
+                  </div>
+                  <div class="buttons">
+                    <a href="#" class="buy"> Buy Now</a>
+                    <a href="#" class="cart">Add to Cart</a>
                   </div>
                 </div>
               </div>
