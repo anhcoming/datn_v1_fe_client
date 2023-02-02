@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
     this.categoryService.getAllCategoryNoPage().subscribe((res)=>{
      console.log("ở đây",res)
      this.slug = res
-      for(let i =0;i<17;i++){
+      for(let i =0;i<50;i++){
         if(this.slug[i].slug.includes('nam')){
           this.nam.push({name:this.slug[i].name,slug:this.slug[i].slug})
         }else if(this.slug[i].slug.includes('nu')){
