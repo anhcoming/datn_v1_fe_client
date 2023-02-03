@@ -47,9 +47,16 @@ export class BlogDetailComponent implements OnInit {
   trustedUrl: any;
   post: any
   id: any;
+  blog :any;
+  topic: any;
+  page: number = 0;
+  pageSize!: number;
+  totalPages: number = 0;
+  totalElements!: number;
   public productSeller!: ProductSeller[];
   tip: any;
   message = "hello"
+  topicName = ""
   constructor(
     private productService: ProductService,
     private activeRoute: ActivatedRoute, private service: BlogService, private sanitizer: DomSanitizer) {
@@ -90,6 +97,32 @@ export class BlogDetailComponent implements OnInit {
         console.log(err);
       },
     })
+  }
+
+  getBlogListV3(req: any) {
+    this.topicName = "BÀI VIẾT MỚI NHẤT";
+    this.service.getBlogListV2(req).subscribe({
+      next: (data: any) => {
+        console.log(data.data);
+        this.blog = data.data;
+
+        this.page = data.page;
+        this.pageSize = data.pageSize;
+        this.totalPages = data.totalPages;
+        this.totalElements = data.totalElements;
+        console.log(this.page, this.totalPages, this.pageSize, this.totalElements);
+
+      }, error: (err) => {
+        console.log(err);
+      },
+    })
+  }
+
+  openTopic(item: any) {
+    this.req.topicId = item.id;
+    this.getBlogListV3(this.req);
+    console.log("ID", item);
+    this.topicName = item.name
   }
 
 

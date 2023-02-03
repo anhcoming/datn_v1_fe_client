@@ -12,6 +12,19 @@
     </div>
   </div>
 </div>
+<div class="hover03 ak__item ml-20" *ngFor="let item of topic">
+  <!-- <figure>
+    <img (click)="openTopic(item)" style="width:100%;height:100%; object-fit: cover;object-position: 0% 0% "
+      src={{item.image}} alt="">
+  </figure> -->
+  <a class="btn btn-primary" style="font-size: 18px; text-align: center;"
+    (click)="openTopic(item)">{{item.name}}</a>
+  <!-- <p class="text-center text-dark" (click)="openTopic(item)">{{item.name}}</p> -->
+</div>
+<div class="container cate pt-4">
+  <div class="ak mt-3 mb-5 container" style="padding:5px 5px">
+  </div>
+</div>
 <div class="container" style="padding:2% 2%">
   <div class="row">
     <div class="col-8">
@@ -26,7 +39,10 @@
         <div class="title fw-bold">
           <h2>{{post?.title}}</h2>
         </div>
-        <p class="e2e-inner-html-bound image" [innerHTML]="post?.content"></p>
+        <div class="col-sm-4 mb-1">
+          <img style="height:200px;object-fit: contain " class="center img-fluid" src={{post?.image}} alt="">
+        </div>
+        <p class="e2e-inner-html-bound image" [innerHTML]="post?.description"></p>
       </div>
     </div>
     <div class="col-4 h3 mt-3 text-end">Top bán chạy<br><br>
@@ -43,17 +59,25 @@
   </div>
 
   <span class="fw-300 h4 mt-5"><b>Bài viết cùng chủ đề:</b></span>
-
   <div class="mt-4">
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
       (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-      <div style="height:240px" ngxSlickItem *ngFor="let slide of tip" class="slide p-1">
-        <div style="height: 170px;overflow: hidden;"><img class="hei" style="width:120%;overflow: hidden;"
-            src="{{slide.image}}">
+      <div style="height:240px" ngxSlickItem *ngFor="let slide of tip" class="slide p-1" routerLink="/blog/{{slide.id}}">
+        <div class="blog">
+          <div class="row post" ngxSlickItem *ngFor="let item of blog | paginate: {
+              itemsPerPage: pageSize,
+              currentPage: page+1,
+              totalItems: totalElements }" routerLink="/blog/{{item.id}}">
+            <div class="col-sm-4 mb-1">
+              <img style="height:200px;object-fit: contain " class="center img-fluid" src={{item.image}} alt="">
+            </div>
+          </div>
         </div>
-        <h4 class=" text-dark">{{slide.title}}</h4>
-
-      </div>
-
+       <div style="height: 170px;overflow: hidden;"><img class="hei" style="width:120%;overflow: hidden;"
+        src="{{slide.image}}">
+    </div>
+    <h4 class=" text-dark">{{slide.title}}</h4>
+        </div>
+        
     </ngx-slick-carousel>
   </div>

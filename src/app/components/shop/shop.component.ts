@@ -181,19 +181,28 @@ console.log(e)
     console.log('search change : ', this.req);
     this.getListProduct(this.req);
   }
-
+ 
   //filter price with priceMin and priceMax
   priceFilter() {
-    if (Number(this.minPrice) >= Number(this.maxPrice)) {
+    if (Number(this.minPrice) ==0 && Number(this.maxPrice) ==0) {
+      this.req.minPrice = this.minPrice;
+      this.req.maxPrice = this.maxPrice;
+      this.req.pageReq.page = 0;
+      this.getListProduct(this.req);
+    
+    }else if( Number(this.minPrice) >= Number(this.maxPrice)){
       alert('min price must be less than max price');
       return;
-    }
-
-    this.req.minPrice = this.minPrice;
+    }else{
+      this.req.minPrice = this.minPrice;
     this.req.maxPrice = this.maxPrice;
     this.req.pageReq.page = 0;
     console.log('req price filter : ', this.req);
     this.getListProduct(this.req);
+
+    }
+
+    
   }
 
   // Only Integer Numbers
