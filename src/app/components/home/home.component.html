@@ -122,7 +122,7 @@
                   <!-- <span class="pink">-10%</span> -->
                   <div class="product-action">
                     <div class="pro-same-action pro-wishlist">
-                      <a title="Wishlist"><i class="pe-7s-like"></i></a>
+                      <a (click)="addToFavourite(product.productId)" title="Wishlist"><i class="pe-7s-like"></i></a>
                     </div>
                     <div class="pro-same-action pro-cart">
                       <a (click)="saveProduct(product)" title="Add To Cart" [routerLink]="['/product-detail/' + product.productId]"><i
@@ -159,14 +159,13 @@
         <div *ngFor="let item of blog ; let i= index" routerLink="/blog/{{item.id}}" class="col-lg-4 col-md-6 col-sm-6">
           <div *ngIf="i<3" class="blog-wrap scroll-zoom">
             <div class="blog-img" style="height:400px;position: relative;;">
-              <a><img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/a96a1b62-d6b4-4c91-b1db-ae68863243af/air-force-1-07-craft-shoe-RxBngv.png" alt="" 
-                /></a>
+                <a><img class="default-img" [src]="item.image" alt="" /></a>
               <span class="purple" >{{item.name}}</span>
             </div>
             <div class="blog-content-wrap">
               <div class="blog-content text-center">
                 <h3>
-                  <a class="red" style="font-size: 15px">{{item.title}}<br />
+                  <a class="purple" style="font-size: 15px;">{{item.title}}<br />
                   </a>
                 </h3>
             </div>

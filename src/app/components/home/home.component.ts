@@ -4,6 +4,9 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ProductService } from '../../services/product.service';
 import { ProductSeller } from '../../models/product-seller';
+import { AuthService } from 'src/app/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FavouriteService } from 'src/app/services/favourite.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +16,15 @@ import { ProductSeller } from '../../models/product-seller';
 export class HomeComponent implements OnInit {
   public productSeller!: ProductSeller[];
   blog: any;
+  isFavourite = false;
 
   constructor(
     private spinner: NgxSpinnerService,
     private productService: ProductService,
     private service: BlogService,
+    private router: Router,
+    private auth: AuthService,
+    private favourite: FavouriteService
   ) {}
 
   ngOnInit(): void {
@@ -95,6 +102,23 @@ console.log(e)
       },
       error: (err) => {
         console.log('error : ', err);
+      },
+    });
+  }
+  addToFavourite(id: any) {
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(['login']);
+      return;
+    }
+
+    this.favourite.createFavourite(id).subscribe({
+      next: (response: any) => {
+        console.log('response: ', response);
+        console.log('response.data: ', response.data);
+        this.isFavourite = response.data;
+      },
+      error: (err) => {
+        console.log('err : ', err);
       },
     });
   }
