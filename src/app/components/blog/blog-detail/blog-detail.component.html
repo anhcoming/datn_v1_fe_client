@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="col-4 h3 mt-3 text-end">Top bán chạy<br><br>
-    <div class="post" *ngFor="let item of productSeller" routerLink="/blog/{{item.productId}}">
+      <div class="post" *ngFor="let item of productSeller" routerLink="/product-detail/{{item.productId}}">
       <div style="width:250px;float:right;">
         <img class=" img-fluid" src={{item.image}} alt="">
         <p style="text-align: left;" class="fw-200">{{item.name}}</p>

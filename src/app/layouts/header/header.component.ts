@@ -18,11 +18,11 @@ import { Notification } from './../../models/notification';
 export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
   public cartItem!: CartItem;
-  slug:any;
-  data:any
-  nam:any=[];
-  nu:any=[];
-  unisex: any=[];
+  slug: any;
+  data: any
+  nam: any = [];
+  nu: any = [];
+  unisex: any = [];
   notifications: Notification[] = [];
   numberNotiUnRead: number = 0;
   subscription!: Subscription;
@@ -56,21 +56,21 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  getAllCategory(){
-    this.categoryService.getAllCategoryNoPage().subscribe((res)=>{
-     console.log("ở đây",res)
-     this.slug = res
-      for(let i =0;i<17;i++){
-        if(this.slug[i].slug.includes('-nam')){
-          this.nam.push({name:this.slug[i].name.replace('NAM',''),slug:this.slug[i].slug})
-        }else if(this.slug[i].slug.includes('-nu')){
-          this.nu.push({name:this.slug[i].name.replace('NỮ',''),slug:this.slug[i].slug})
-        } else if(this.slug[i].slug.includes('-unisex')) {
-          this.unisex.push({name:this.slug[i].name.replace('UNISEX',''),slug:this.slug[i].slug})
+  getAllCategory() {
+    this.categoryService.getAllCategoryNoPage().subscribe((res) => {
+      console.log("ở đây", res)
+      this.slug = res
+      for (let i = 0; i < 50; i++) {
+        if (this.slug[i].slug.includes('-nam')) {
+          this.nam.push({ name: this.slug[i].name.replace('NAM', ''), slug: this.slug[i].slug })
+        } else if (this.slug[i].slug.includes('-nu')) {
+          this.nu.push({ name: this.slug[i].name.replace('NỮ', ''), slug: this.slug[i].slug })
+        } else if (this.slug[i].slug.includes('-unisex')) {
+          this.unisex.push({ name: this.slug[i].name.replace('UNISEX', ''), slug: this.slug[i].slug })
 
         }
       }
-      console.log("Nam",this.nam)
+      console.log("Nam", this.nam)
     })
   }
 
@@ -111,7 +111,7 @@ export class HeaderComponent implements OnInit {
 
 
 
-  
+
 
   getTop3Notification() {
     //when call api getTop3Notification , noLoading request
