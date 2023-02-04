@@ -67,10 +67,9 @@ export class HeaderComponent implements OnInit {
           this.nu.push({ name: this.slug[i].name.replace('NỮ', ''), slug: this.slug[i].slug })
         } else if (this.slug[i].slug.includes('-unisex')) {
           this.unisex.push({ name: this.slug[i].name.replace('UNISEX', ''), slug: this.slug[i].slug })
-
         }
+        console.log("Nam", this.nam)
       }
-      console.log("Nam", this.nam)
     })
   }
 
