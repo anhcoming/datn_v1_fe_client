@@ -15,7 +15,7 @@ export class OrderDetailComponent implements OnInit {
   id!: string;
   public orderDetail!: OrderDetail;
   public productOrder: ProductOrder[] = [];
-
+  review:any= []
   check: boolean = false;
   starRating = 0;
 
@@ -31,11 +31,15 @@ export class OrderDetailComponent implements OnInit {
     private activeRoute: ActivatedRoute,
     private order: OrderService,
     private ratingService: RatingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.id = this.activeRoute.snapshot.params['id'];
     this.getOrderDetail(this.id);
+  }
+
+  checkReviewExist(productId: any) {
+    this.order.checkReviewExist(productId, this.id)
   }
 
   getOrderDetail(id: string): any {
@@ -45,6 +49,22 @@ export class OrderDetailComponent implements OnInit {
         this.orderDetail = res.data;
         this.productOrder = res.data.product;
         console.log('this.productOrder : ', this.productOrder);
+        for (let i = 0; i < this.productOrder.length; i++) {
+          this.order.checkReviewExist(this.productOrder[i].productId, this.id).subscribe((res) => {
+            // console.log("REview", res.data[0]?.reviewId)
+            let review = res.data[0]?.reviewId
+            this.productOrder[i].reviewId = review
+            console.log(this.productOrder)
+            console.log("Soos ddee",this.productOrder.length)
+            if( this.productOrder.length>1){
+              if(this.productOrder[i].productId == this.productOrder[i-1].productId){
+                this.productOrder.splice(i,1)
+              }
+            }
+         
+          })
+        }
+     
       },
       error: (err) => {
         console.log('err', err);
