@@ -58,7 +58,7 @@ export class OrderDetailComponent implements OnInit {
             console.log("Soos ddee",this.productOrder.length)
             if( this.productOrder.length>1){
               if(this.productOrder[i].productId == this.productOrder[i-1].productId){
-                this.productOrder.splice(i,1)
+                this.productOrder.splice(i,1000)
               }
             }
          

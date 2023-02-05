@@ -149,11 +149,11 @@
   <div class="container">
     <div class="description-review-wrapper">
       <div class="description-review-topbar nav">
-        <a data-bs-toggle="tab" href="#des-details1">Thông tin sản phẩm</a>
+        <a class="active" data-bs-toggle="tab" href="#des-details1">Thông tin sản phẩm</a>
         <a data-bs-toggle="tab" href="#des-details3">Đánh giá</a>
       </div>
       <div class="tab-content description-review-bottom">
-        <div id="des-details1" class="tab-pane">
+        <div id="des-details1" class="tab-pane active">
           <div class="product-anotherinfo-wrapper">
             <h4>Đặc điểm sản phẩm</h4>
             <div *ngFor="let des of description" class="tick-line">
@@ -171,15 +171,16 @@
               <div *ngIf="reviews.length > 0">
                 <div class="head-rating">
                   <div>
-                    <span class="heading score-average">{{productDetail?.avgRating}}</span>
+                    <span class="heading score-average">{{avg}}</span>
                     <span class="score-max">/5</span>
                   </div>
                   <div>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
+                   
+                    <i class="fa fa-star{{haft1}} {{checked1}}" aria-hidden="true"></i>
+                    <i class="fa fa-star{{haft2}} {{checked2}}" aria-hidden="true"></i>
+                    <i class="fa fa-star{{haft3}} {{checked3}}" aria-hidden="true"></i>
+                    <i class="fa fa-star{{haft4}} {{checked4}}" aria-hidden="true"></i>
+                    <i class="fa fa-star{{haft5}} {{checked5}}" aria-hidden="true"></i>
                     <p>{{productDetail?.countRating}} đánh giá</p>
                   </div>
                 </div>
@@ -344,3 +345,6 @@
       </div>
     </div>
   </div>
+  <script>
+    $('#product_detail').tab('show');
+  </script>

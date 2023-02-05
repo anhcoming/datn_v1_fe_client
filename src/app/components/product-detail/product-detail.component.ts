@@ -41,7 +41,16 @@ export class ProductDetailComponent implements OnInit {
   sizeColorSelected!: boolean;
   quantityProduct!: number;
   priceProduct!: string;
-
+  haft1: any
+  haft2: any
+  haft3: any
+  haft4: any
+  haft5: any
+  checked1 = ''
+  checked2 = ''
+  checked3 = ''
+  checked4 = ''
+  checked5 = ''
   isFavourite = false;
 
   listFavourite: Favourite[] = [];
@@ -73,7 +82,7 @@ export class ProductDetailComponent implements OnInit {
   pageSize!: number;
   totalPages: number = 0;
   totalElements!: number;
-
+  avg: any
   req: any = {
     pageReq: {
       page: 0,
@@ -111,6 +120,38 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail = response.data;
         this.description = response.data.description.split('.');
         this.productOptions = response.data.productOptions;
+        this.avg = Number(this.productDetail.avgRating).toFixed(1)
+        let haft = '-half-o'
+        let checked = 'checked'
+        if (this.avg < 1) {
+          this.haft1 = haft
+        }
+        else if (this.avg == 1) {
+          this.checked1 = checked
+        } else if (this.avg > 1 && this.avg <= 1.5 ||this.avg > 1.5 && this.avg < 2) {
+          this.checked1 = this.checked2 = checked
+          this.haft2 = haft
+        }
+        else if (this.avg == 2) {
+          this.checked1 =  this.checked2 = checked
+        }  else if (this.avg == 3) {
+          this.checked1 =  this.checked2 =  this.checked3 = checked
+        }  else if (this.avg == 4) {
+          this.checked1 =  this.checked2 =this.checked3 =  this.checked4 = checked
+        }  else if (this.avg == 5) {
+          this.checked1 =  this.checked2 =this.checked3 =  this.checked4 =this.checked5= checked
+        } else if (this.avg > 2 && this.avg <= 2.5 || this.avg > 2.5 && this.avg <= 3) {
+          this.checked1 = this.checked2= this.checked3 = checked
+          this.haft3= haft
+        } else if (this.avg > 3 && this.avg <= 3.5 || this.avg > 3.5 && this.avg < 4) {
+          this.checked1 = this.checked2= this.checked3 = this.checked4 = checked
+          this.haft4= haft
+        } else if (this.avg > 4 && this.avg <= 4.5 || this.avg > 4.5 && this.avg <= 5) {
+          this.checked1 =  this.checked2 =this.checked3 =  this.checked4 =this.checked5 = checked
+          this.haft5 = haft
+        }
+
+
         console.log('product-detail:', this.productDetail);
         console.log('productOptions:', this.productOptions);
         // this.priceOption = response.data.productOptions[0].price;
@@ -118,7 +159,7 @@ export class ProductDetailComponent implements OnInit {
         //  debugger
         if (data.min) {
           this.priceOption = data.min == data.max ? data.min : data.min + "₫ - " + data.max
-        }else{
+        } else {
           this.priceOption = data
         }
 
