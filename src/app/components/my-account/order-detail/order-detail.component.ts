@@ -15,7 +15,7 @@ export class OrderDetailComponent implements OnInit {
   id!: string;
   public orderDetail!: OrderDetail;
   public productOrder: ProductOrder[] = [];
-  review:any= []
+  review: any = []
   check: boolean = false;
   starRating = 0;
 
@@ -50,21 +50,23 @@ export class OrderDetailComponent implements OnInit {
         this.productOrder = res.data.product;
         console.log('this.productOrder : ', this.productOrder);
         for (let i = 0; i < this.productOrder.length; i++) {
+          for (let i = 0; i < this.productOrder.length; i++) {
+            let b = this.productOrder.filter(e => e.productName == this.productOrder[i].productName)
+            console.log(b.length)
+            if (b.length > 1) {
+              this.productOrder.splice(i, b.length - 1)
+            }
+          }
           this.order.checkReviewExist(this.productOrder[i].productId, this.id).subscribe((res) => {
-            // console.log("REview", res.data[0]?.reviewId)
             let review = res.data[0]?.reviewId
             this.productOrder[i].reviewId = review
             console.log(this.productOrder)
-            console.log("Soos ddee",this.productOrder.length)
-            if( this.productOrder.length>1){
-              if(this.productOrder[i].productId == this.productOrder[i-1].productId){
-                this.productOrder.splice(i,1000)
-              }
-            }
-         
+            console.log("Soos ddee", this.productOrder.length)
+            console.log(this.productOrder)
+            console.log(this.productOrder)
           })
         }
-     
+
       },
       error: (err) => {
         console.log('err', err);
