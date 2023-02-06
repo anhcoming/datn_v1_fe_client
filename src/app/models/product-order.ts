@@ -5,7 +5,7 @@ export interface ProductOrder {
   image?: string;
   sizeName?: string;
   colorName?: string;
-  reviewId?: string;
+  reviewId?: any;
   price?: number;
   qty?: number;
   subtotal?: number;

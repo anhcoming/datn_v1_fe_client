@@ -22,7 +22,7 @@ const AUTH_API = environment.baseUrl;
   providedIn: 'root',
 })
 export class OrderService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getListOrder(): Observable<any> {
     return this.http.get<any>(AUTH_API + 'order/myOrders', requestOptions);
@@ -64,6 +64,9 @@ export class OrderService {
     );
   }
 
+  checkReviewExist(productId: any, orderId: any): Observable<any>  {
+    return this.http.get<any>(AUTH_API + 'review/checkReviewV2/' + orderId + "/" + productId)
+  }
   async existReview(id: any) {
     const result = await this.http
       .get<any>(AUTH_API + 'review/checkReview/' + id, requestOptions)
