@@ -69,9 +69,13 @@
                                       <div class="product-content text-center">
                                           <h3><a [routerLink]="['/product-detail/'+product.id]">{{product.name}}</a></h3>
                                           <div class="product-price">
-                                            <span style="color: #ee4d2d;">{{product.maxPrice | vnd }}</span>
-                                              <!-- <span class="old">$ 60.00</span> -->
-                                          </div>
+                                            <span *ngIf="product.maxPrice==product.minPrice"
+                                                style="color: #ee4d2d;">{{product.maxPrice|vnd}}</span>
+                                            <span *ngIf="product.maxPrice!==product.minPrice"
+                                                style="color: #ee4d2d;">{{product.minPrice+" - "+product.maxPrice
+                                                |vnd}}</span>
+                                            <!-- <span class="old">$ 60.00</span> -->
+                                        </div>
                                       </div>
                                   </div>
                               </div>

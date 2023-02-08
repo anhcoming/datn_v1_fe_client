@@ -17,8 +17,7 @@
     <img (click)="openTopic(item)" style="width:100%;height:100%; object-fit: cover;object-position: 0% 0% "
       src={{item.image}} alt="">
   </figure> -->
-  <a class="btn btn-primary" style="font-size: 18px; text-align: center;"
-    (click)="openTopic(item)">{{item.name}}</a>
+  <a class="btn btn-primary" style="font-size: 18px; text-align: center;" (click)="openTopic(item)">{{item.name}}</a>
   <!-- <p class="text-center text-dark" (click)="openTopic(item)">{{item.name}}</p> -->
 </div>
 <div class="container cate pt-4">
@@ -49,10 +48,11 @@
     </div>
     <div class="col-4 h3 mt-3 text-end">Top bán chạy<br><br>
       <div class="post" *ngFor="let item of productSeller" routerLink="/product-detail/{{item.productId}}">
-      <div style="width:250px;float:right;">
-        <img class=" img-fluid" src={{item.image}} alt="">
-        <p style="text-align: left;" class="fw-200">{{item.name}}</p>
-      </div></div>
+        <div style="width:250px;float:right;">
+          <img class=" img-fluid" src={{item.image}} alt="">
+          <p style="text-align: left;" class="fw-200">{{item.name}}</p>
+        </div>
+      </div>
     </div>
     <br>
     <br>
@@ -64,7 +64,8 @@
   <div class="mt-4">
     <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
       (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-      <div style="height:240px" ngxSlickItem *ngFor="let slide of tip" class="slide p-1" routerLink="/blog/{{slide.id}}">
+      <div style="height:240px" ngxSlickItem *ngFor="let slide of tip" class="slide p-1"
+        routerLink="/blog/{{slide.id}}">
         <div class="blog">
           <div class="row post" ngxSlickItem *ngFor="let item of blog | paginate: {
               itemsPerPage: pageSize,
@@ -75,11 +76,11 @@
             </div>
           </div>
         </div>
-       <div style="height: 170px;overflow: hidden;"><img class="hei" style="width:120%;overflow: hidden;"
-        src="{{slide.image}}">
-    </div>
-    <h4 class=" text-dark">{{slide.title}}</h4>
+        <div style="height: 170px;overflow: hidden;"><img class="hei" style="width:120%;overflow: hidden;"
+            src="{{slide.image}}">
         </div>
-        
+        <h4 class=" text-dark">{{slide.title}}</h4>
+      </div>
+
     </ngx-slick-carousel>
   </div>
